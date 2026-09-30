@@ -1,28 +1,24 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio External Reference — AI & Spatial Design</title>
-  
-  <!-- Font Circular (via CDN Fonts) e fallback Inter/Helvetica -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.cdnfonts.com/css/circular-std-sp" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================================================
-       1. PALETTE & TIPOGRAFIA (PURE WHITE / BLACK / ACCENTS)
-       ========================================================= */
     :root {
-      --bg-white: #ffffff;      /* Sfondo bianco puro */
-      --text-black: #000000;    /* Nero assoluto */
-      --border-gray: #e5e5e5;  /* Grigio per linee di griglia pulite */
-      --muted: #707070;         /* Grigio medio per metadati e sottotitoli */
-      
-      /* Circular con fallback di sistema */
-      --font-circular: 'Circular Std', 'Circular', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      --bg-white: #ffffff;
+      --text-black: #000000;
+      --border-gray: #e5e5e5;
+      --muted: #707070;
+      --font-circular: 'Circular Std', 'Circular', -apple-system,
+        BlinkMacSystemFont, 'Inter', sans-serif;
     }
 
     * {
@@ -44,7 +40,7 @@
     }
 
     /* =========================================================
-       2. HEADER & LOGO (IN ALTO A SINISTRA)
+       HEADER & LOGO
        ========================================================= */
     header {
       position: fixed;
@@ -68,7 +64,7 @@
     }
 
     .site-logo {
-      height: 48px; /* Dimensione logo */
+      height: 48px;
       width: auto;
       display: block;
     }
@@ -87,7 +83,9 @@
       gap: 0.5rem;
     }
 
-    /* Overlay Navigazione */
+    /* =========================================================
+       MENU OVERLAY
+       ========================================================= */
     .nav-overlay {
       position: fixed;
       top: 0;
@@ -123,7 +121,7 @@
     .nav-links a {
       font-family: var(--font-circular);
       font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
       color: var(--bg-white);
       text-decoration: none;
       transition: opacity 0.3s;
@@ -134,11 +132,14 @@
     }
 
     /* =========================================================
-       3. HERO SECTION
+       HERO SECTION
        ========================================================= */
     .hero {
       min-height: 80vh;
-      padding: 10rem 3rem 4rem;
+
+      /* RIDOTTO ANCORA: 3rem */
+      padding: 3rem 3rem 4rem;
+
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -151,20 +152,20 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       color: var(--muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .hero-title {
       font-family: var(--font-circular);
       font-size: clamp(2.5rem, 6vw, 5.5rem);
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
       line-height: 1.05;
       letter-spacing: -1.5px;
       max-width: 1200px;
     }
 
     /* =========================================================
-       4. CONTROLLI E FILTRI
+       CONTROLLI E FILTRI
        ========================================================= */
     .controls-bar {
       padding: 2rem 3rem;
@@ -194,9 +195,10 @@
       transition: color 0.3s;
     }
 
-    .filter-btn.active, .filter-btn:hover {
+    .filter-btn.active,
+    .filter-btn:hover {
       color: var(--text-black);
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
     }
 
     .project-count {
@@ -205,7 +207,7 @@
     }
 
     /* =========================================================
-       5. GRIGLIA PROGETTI (EXTERNAL REFERENCE STYLE)
+       GRIGLIA PROGETTI
        ========================================================= */
     .projects-grid {
       display: grid;
@@ -266,7 +268,7 @@
     .project-info h3 {
       font-family: var(--font-circular);
       font-size: 1.75rem;
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
       margin-bottom: 0.5rem;
       letter-spacing: -0.5px;
     }
@@ -279,12 +281,12 @@
     .project-number {
       font-family: var(--font-circular);
       font-size: 1rem;
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
       color: var(--muted);
     }
 
     /* =========================================================
-       6. FOOTER & LOGO FOOTER
+       FOOTER
        ========================================================= */
     footer {
       padding: 6rem 3rem 3rem;
@@ -310,7 +312,7 @@
 
     .footer-col h4 {
       font-size: 0.85rem;
-      font-weight: 700; /* Circular Bold */
+      font-weight: 700;
       letter-spacing: 1px;
       margin-bottom: 1.5rem;
       color: var(--muted);
@@ -336,16 +338,23 @@
     }
 
     /* =========================================================
-       7. RESPONSIVE DESIGN
+       RESPONSIVE
        ========================================================= */
     @media (max-width: 900px) {
-      header, .hero, .controls-bar, footer {
+      header,
+      .hero,
+      .controls-bar,
+      footer {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
 
       .site-logo {
         height: 36px;
+      }
+
+      .hero {
+        padding-top: 2rem;
       }
 
       .projects-grid {
@@ -364,16 +373,20 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
   <header>
-    <!-- LOGO CON LINK ESTERNO -->
-    <a href="https://externalreference.com/" target="_blank" rel="noopener noreferrer" class="logo-link">
-      <img src="images/ER_Logotipo_Negro.png" alt="External Reference Logo" class="site-logo">
+    <a href="https://externalreference.com/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="logo-link">
+      <img src="images/ER_Logotipo_Negro.png"
+           alt="External Reference Logo"
+           class="site-logo">
     </a>
 
-    <!-- MENU IN ALTO A DESTRA -->
     <button class="menu-toggle" id="menuBtn">
       <span>Menu</span>
     </button>
@@ -388,63 +401,84 @@
     </ul>
   </div>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero">
     <span class="hero-label">Architecture & Spatial Experience</span>
-    <h1 class="hero-title">We transform ideas into spatial and visual experiences.</h1>
+
+    <h1 class="hero-title">
+      We transform ideas into spatial and visual experiences.
+    </h1>
   </section>
 
-  <!-- FILTRI PROGETTI -->
+  <!-- FILTRI -->
   <div class="controls-bar" id="projects">
     <div class="filter-buttons">
-      <button class="filter-btn active" onclick="filterProjects('urban-architecture', event)">Urban & Architecture</button>
-      <button class="filter-btn" onclick="filterProjects('interior', event)">Interior</button>
-      <button class="filter-btn" onclick="filterProjects('art-collectible', event)">Art & Collectible Design</button>
+      <button class="filter-btn active"
+              onclick="filterProjects('urban-architecture', event)">
+        Urban & Architecture
+      </button>
+
+      <button class="filter-btn"
+              onclick="filterProjects('interior', event)">
+        Interior
+      </button>
+
+      <button class="filter-btn"
+              onclick="filterProjects('art-collectible', event)">
+        Art & Collectible Design
+      </button>
     </div>
+
     <span class="project-count">03 Selected Projects</span>
   </div>
 
-  <!-- GRIGLIA PROGETTI -->
+  <!-- PROGETTI -->
   <main class="projects-grid">
 
-    <!-- PROGETTO 1 -->
     <a href="#" class="project-item" data-category="urban-architecture">
       <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Monolithic Pavilion">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+             alt="Monolithic Pavilion">
       </div>
+
       <div class="project-meta">
         <div class="project-info">
           <h3>Monolithic Pavilion</h3>
           <p>Urban & Architecture / Digital Fabrication</p>
         </div>
+
         <span class="project-number">01</span>
       </div>
     </a>
 
-    <!-- PROGETTO 2 -->
     <a href="#" class="project-item" data-category="interior">
       <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Organic Spatial Experience">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
+             alt="Organic Spatial Experience">
       </div>
+
       <div class="project-meta">
         <div class="project-info">
           <h3>Organic Spatial Experience</h3>
           <p>Interior / Retail Design</p>
         </div>
+
         <span class="project-number">02</span>
       </div>
     </a>
 
-    <!-- PROGETTO 3 -->
     <a href="#" class="project-item" data-category="art-collectible">
       <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Fluid Landmark">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+             alt="Fluid Landmark">
       </div>
+
       <div class="project-meta">
         <div class="project-info">
           <h3>Fluid Landmark</h3>
           <p>Art & Collectible Design / 3D Printed Structure</p>
         </div>
+
         <span class="project-number">03</span>
       </div>
     </a>
@@ -453,11 +487,20 @@
 
   <!-- FOOTER -->
   <footer id="contact">
+
     <div class="footer-brand">
-      <a href="https://externalreference.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/ER_Logotipo_Negro.png" alt="External Reference Logo" class="footer-logo">
+      <a href="https://externalreference.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img src="images/ER_Logotipo_Negro.png"
+             alt="External Reference Logo"
+             class="footer-logo">
       </a>
-      <p>Exploring architecture as a territory for innovation through digital experimentation and spatial emotion.</p>
+
+      <p>
+        Exploring architecture as a territory for innovation through
+        digital experimentation and spatial emotion.
+      </p>
     </div>
 
     <div class="footer-col">
@@ -477,16 +520,16 @@
         <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
       </ul>
     </div>
+
   </footer>
 
-  <!-- JAVASCRIPT PER INTERATTIVITÀ -->
   <script>
-    // Gestione Menu Overlay
     const menuBtn = document.getElementById('menuBtn');
     const navOverlay = document.getElementById('navOverlay');
 
     function toggleMenu() {
       navOverlay.classList.toggle('active');
+
       if (navOverlay.classList.contains('active')) {
         menuBtn.querySelector('span').textContent = 'Close';
       } else {
@@ -496,12 +539,12 @@
 
     menuBtn.addEventListener('click', toggleMenu);
 
-    // Gestione Filtri Progetti
     function filterProjects(category, e) {
       const items = document.querySelectorAll('.project-item');
       const buttons = document.querySelectorAll('.filter-btn');
 
       buttons.forEach(btn => btn.classList.remove('active'));
+
       if (e && e.target) {
         e.target.classList.add('active');
       }
@@ -515,5 +558,7 @@
       });
     }
   </script>
+
 </body>
 </html>
+```
