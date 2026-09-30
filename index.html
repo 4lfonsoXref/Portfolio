@@ -136,14 +136,10 @@
        ========================================================= */
     .hero {
       min-height: 80vh;
-
-      /* Spazio riservato all'header */
       padding: 8rem 3rem 4rem;
 
       display: flex;
       flex-direction: column;
-
-      /* TESTO CENTRATO VERTICALMENTE */
       justify-content: center;
 
       border-bottom: 1px solid var(--border-gray);
@@ -165,8 +161,6 @@
       line-height: 1.05;
       letter-spacing: -1.5px;
       max-width: 1200px;
-
-      /* Centra il blocco */
       margin: 0 auto;
       text-align: center;
     }
@@ -177,7 +171,7 @@
     .controls-bar {
       padding: 2rem 3rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       border-bottom: 1px solid var(--border-gray);
       flex-wrap: wrap;
@@ -206,11 +200,6 @@
     .filter-btn:hover {
       color: var(--text-black);
       font-weight: 700;
-    }
-
-    .project-count {
-      font-size: 0.85rem;
-      color: var(--muted);
     }
 
     /* =========================================================
@@ -287,305 +276,7 @@
 
     .project-number {
       font-family: var(--font-circular);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer {
-      padding: 6rem 3rem 3rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem;
-      background-color: var(--bg-white);
-    }
-
-    .footer-logo {
-      height: 36px;
-      width: auto;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .footer-brand p {
-      color: var(--muted);
-      max-width: 400px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .footer-col h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 1.5rem;
-      color: var(--muted);
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-col a {
-      color: var(--text-black);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: opacity 0.3s;
-    }
-
-    .footer-col a:hover {
-      opacity: 0.5;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-    @media (max-width: 900px) {
-
-      header,
-      .hero,
-      .controls-bar,
-      footer {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-
-      .site-logo {
-        height: 36px;
-      }
-
-      .hero {
-        padding-top: 7rem;
-        padding-bottom: 3rem;
-      }
-
-      .hero-title {
-        text-align: center;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-item {
-        border-right: none;
-        padding: 2rem 1.5rem;
-      }
-
-      footer {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <a href="https://externalreference.com/"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="logo-link">
-      <img src="images/ER_Logotipo_Negro.png"
-           alt="External Reference Logo"
-           class="site-logo">
-    </a>
-
-    <button class="menu-toggle" id="menuBtn">
-      <span>Menu</span>
-    </button>
-  </header>
-
-  <!-- MENU -->
-  <div class="nav-overlay" id="navOverlay">
-    <ul class="nav-links">
-      <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-      <li><a href="#about" onclick="toggleMenu()">Studio</a></li>
-      <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-    </ul>
-  </div>
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <span class="hero-label">
-      Architecture & Spatial Experience
-    </span>
-
-    <h1 class="hero-title">
-      We transform ideas into spatial and visual experiences.
-    </h1>
-
-  </section>
-
-  <!-- FILTRI -->
-  <div class="controls-bar" id="projects">
-
-    <div class="filter-buttons">
-
-      <button class="filter-btn active"
-              onclick="filterProjects('urban-architecture', event)">
-        Urban & Architecture
-      </button>
-
-      <button class="filter-btn"
-              onclick="filterProjects('interior', event)">
-        Interior
-      </button>
-
-      <button class="filter-btn"
-              onclick="filterProjects('art-collectible', event)">
-        Art & Collectible Design
-      </button>
-
-    </div>
-
-    <span class="project-count">
-      03 Selected Projects
-    </span>
-
-  </div>
-
-  <!-- PROGETTI -->
-  <main class="projects-grid">
-
-    <a href="#"
-       class="project-item"
-       data-category="urban-architecture">
-
-      <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-             alt="Monolithic Pavilion">
-      </div>
-
-      <div class="project-meta">
-
-        <div class="project-info">
-          <h3>Monolithic Pavilion</h3>
-          <p>Urban & Architecture / Digital Fabrication</p>
-        </div>
-
-        <span class="project-number">01</span>
-
-      </div>
-
-    </a>
-
-
-    <a href="#"
-       class="project-item"
-       data-category="interior">
-
-      <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
-             alt="Organic Spatial Experience">
-      </div>
-
-      <div class="project-meta">
-
-        <div class="project-info">
-          <h3>Organic Spatial Experience</h3>
-          <p>Interior / Retail Design</p>
-        </div>
-
-        <span class="project-number">02</span>
-
-      </div>
-
-    </a>
-
-
-    <a href="#"
-       class="project-item"
-       data-category="art-collectible">
-
-      <div class="project-media-wrapper">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
-             alt="Fluid Landmark">
-      </div>
-
-      <div class="project-meta">
-
-        <div class="project-info">
-          <h3>Fluid Landmark</h3>
-          <p>Art & Collectible Design / 3D Printed Structure</p>
-        </div>
-
-        <span class="project-number">03</span>
-
-      </div>
-
-    </a>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-
-    <div class="footer-brand">
-
-      <a href="https://externalreference.com/"
-         target="_blank"
-         rel="noopener noreferrer">
-
-        <img src="images/ER_Logotipo_Negro.png"
-             alt="External Reference Logo"
-             class="footer-logo">
-
-      </a>
-
-      <p>
-        Exploring architecture as a territory for innovation through
-        digital experimentation and spatial emotion.
-      </p>
-
-    </div>
-
-
-    <div class="footer-col">
-
-      <h4>Navigation</h4>
-
-      <ul>
-        <li><a href="#projects">Work</a></li>
-        <li><a href="#about">Studio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-    </div>
-
-
-    <div class="footer-col">
-
-      <h4>Connect</h4>
-
-      <ul>
-        <li><a href="mailto:info@esempio.com">Email</a></li>
-        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-      </ul>
-
-    </div>
-
-  </footer>
-
-
-  <script>
-
-    const menuBtn = document.getElementById('menuBtn');
-    const navOverlay = document.getElementById('navOverlay');
-
-    function toggleMenu() {
-
-      navOverlay.classList.toggle('active'
+      font-size: 1r
 ```
+
 
