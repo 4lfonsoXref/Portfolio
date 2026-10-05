@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link href="https://fonts.cdnfonts.com/css/circular-std-sp" rel="stylesheet">
+  <title>Urban &amp; Architecture — External Reference</title>
+  <meta name="description" content="Urban design and architecture projects by External Reference: residential, hotel and resort, mixed use and public space.">
+  <style>
+    /* Font del sito: CircularXX (se i file sono in /fonts), altrimenti Circular Std */
+    @font-face {
+      font-family: 'CircularXX';
+      src: local('CircularXX'), local('CircularXX-Book'),
+           url('fonts/CircularXX-Book.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --black: #1a1a1a;
+      --grey: #838282;
+      --grey-arrow: #A6A6A6;
+      --rule: rgba(161, 161, 161, 0.2);
+      --light: #EBEBEB;
+      --font: 'CircularXX', 'Circular Std', 'Circular', system-ui, sans-serif;
+    }
+
+    html {
+      font-size: 10px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #efefef;
+      color: var(--black);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 1.2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { background: none; border: 0; font: inherit; color: inherit; cursor: pointer; }
+    ul { list-style: none; }
+    img { display: block; }
+
+    /* ---------- Loader ---------- */
+    #site-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .4s ease;
+    }
+    #site-loader.is-ready { opacity: 0; pointer-events: none; }
+    #site-loader span {
+      font-size: 1.2rem;
+      line-height: 1;
+      color: var(--grey);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6rem;
+      z-index: 21;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      padding-right: 4rem;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .burger-wrapper {
+      position: relative;
+      z-index: 20;
+      height: 100%;
+      width: 6rem;
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .burger { display: flex; flex-direction: column; gap: .2rem; }
+    .burger span { display: block; border-top: 1.5px solid #000; width: 1.4rem; transition: transform .3s ease, opacity .3s ease; }
+    body.menu-open .burger span:nth-child(1) { transform: translateY(.35rem) rotate(45deg); }
+    body.menu-open .burger span:nth-child(2) { opacity: 0; }
+    body.menu-open .burger span:nth-child(3) { transform: translateY(-.35rem) rotate(-45deg); }
+
+    .header-logo {
+      display: block;
+      padding-left: .8rem;
+      padding-right: 3rem;
+      color: #000;
+    }
+    .header-logo svg { display: block; height: 2.9rem; width: auto; }
+
+    .header-link {
+      font-size: 1.2rem;
+      line-height: .9;
+      white-space: nowrap;
+      color: var(--black);
+    }
+
+    .v-rule {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1.6rem;
+      width: .1rem;
+      background: #000;
+      z-index: 20;
+      transition: opacity .3s ease;
+    }
+
+    /* ---------- Menu ---------- */
+    .menu-panel {
+      position: fixed;
+      inset: 6rem 0 0 0;
+      z-index: 20;
+      background: #efefef;
+      padding: 2.4rem 2.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    body.menu-open .menu-panel { opacity: 1; pointer-events: auto; }
+    .menu-panel li + li { margin-top: .6rem; }
+    .menu-panel a { font-size: 1.6rem; line-height: 1.2; color: var(--black); transition: color .3s ease; }
+    .menu-panel small { display: block; font-size: 1.2rem; color: var(--grey); margin: 2.4rem 0 1rem; }
+    @media (hover: hover) { .menu-panel a:hover { color: var(--grey); } }
+
+    /* ---------- Footer ---------- */
+    footer {
+      position: relative;
+      z-index: 20;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 23.2rem 4rem 3rem;
+    }
+    .footer-logo { display: block; width: fit-content; color: #fff; }
+    .footer-logo svg { display: block; height: 7.2rem; width: auto; }
+    .footer-info {
+      display: flex;
+      align-items: flex-end;
+      column-gap: 4.2rem;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .footer-info li { white-space: pre-line; }
+    .footer-info .copy { white-space: nowrap; }
+    @media (hover: hover) { .footer-info a { transition: opacity .3s ease; } .footer-info a:hover { opacity: .5; } }
+
+    @media (min-width: 768px) and (max-width: 1099px) {
+      footer { flex-direction: column; align-items: flex-start; row-gap: 6rem; padding-top: 12rem; }
+      .footer-info { flex-wrap: wrap; row-gap: 2.4rem; column-gap: 4.2rem; }
+      .footer-info > .copy { width: 100%; }
+    }
+    @media (max-width: 767px) {
+      header { padding-right: 1rem; }
+      .burger-wrapper { width: 3.6rem; justify-content: flex-start; padding-left: 1rem; }
+      .header-logo { padding-right: 1.2rem; }
+      .header-logo svg { height: 2.6rem; }
+      .menu-panel { padding: 2.4rem 1rem; }
+      footer { display: block; padding: 4.5rem 1rem 4rem; }
+      .footer-info { display: block; margin-top: 28rem; }
+      .footer-info > ul { margin-bottom: 4.5rem; }
+      .footer-info > .copy { margin-top: 4.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+    }
+
+    body { overflow: hidden; }
+
+    /* ---------- Header: selettori di categoria (come la pagina Projects) ---------- */
+    .header-link { margin-right: 2.2rem; }
+    .rule-left { position: relative; top: auto; transform: none; flex: none; margin-right: 2.2rem; }
+    .cat-slot { position: relative; display: inline-flex; align-items: center; height: 100%; }
+    .cat-slot .cat-btn--1 { position: relative; left: auto; top: auto; transform: none; }
+    .rule-mid   { left: 50%; transform: translate(-50%, -50%); }
+
+    .cat-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.2rem;
+      line-height: .9;
+      color: var(--black);
+      white-space: nowrap;
+      padding-right: 1rem;
+      transition: opacity .3s ease;
+    }
+    .cat-btn::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: .4rem solid transparent;
+      border-bottom: .4rem solid transparent;
+      border-left: .8rem solid #000;
+    }
+
+    .cat-btn--2 { left: calc(50% + 2.1rem); }
+
+    .back-btn {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--grey);
+      text-decoration: underline;
+      text-underline-offset: .33rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    body.project-open .back-btn { opacity: 1; pointer-events: auto; }
+    body.project-open .cat-btn,
+    body.project-open .rule-mid { opacity: 0; pointer-events: none; }
+
+    .cat-list {
+      position: absolute;
+      top: 0;
+      z-index: 22;
+      height: 100%;
+      width: 50%;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      padding-right: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .cat-list--1 { left: var(--slot-left, 16.1rem); width: calc(50% - var(--slot-left, 16.1rem)); padding-left: 0; }
+    .cat-list--2 { left: 50%; padding-left: 2.1rem; }
+    .cat-list.is-open { opacity: 1; pointer-events: auto; }
+    .cat-list::after {
+      content: '';
+      position: absolute;
+      right: 3rem;
+      top: 0;
+      height: 100%;
+      width: 12rem;
+      background: linear-gradient(90deg, #efefef00, #efefef);
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .cat-list.at-end::after { opacity: 0; }
+    .cats-scroll {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+    }
+    .cats-scroll::-webkit-scrollbar { display: none; }
+    .cats-scroll button {
+      flex: none;
+      font-size: 1.2rem;
+      line-height: .9;
+      padding: 0 1rem;
+      color: var(--grey);
+    }
+    .cats-scroll button:first-child { padding-left: 0; }
+    .cats-scroll button.is-current { color: var(--black); }
+    .cats-scroll button:disabled { opacity: .3; cursor: default; pointer-events: none; }
+    .cat-close {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: .4rem solid transparent;
+      border-bottom: .4rem solid transparent;
+      border-right: .8rem solid #000;
+      cursor: pointer;
+    }
+
+    /* ---------- Griglia progetti a due colonne ---------- */
+    .projects-grid {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      background: #efefef;
+      z-index: 1;
+    }
+    .grid-cols-wrapper { display: flex; height: 100vh; }
+
+    .col {
+      position: relative;
+      width: 50vw;
+      height: 100%;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: none;
+      transition: width .5s ease;
+      will-change: width;
+    }
+    .col::-webkit-scrollbar { display: none; }
+    .col--1 { border-right: 0; }
+    .col-inner { padding-bottom: 13rem; }
+    .col, .col.open { width: 100vw; }
+    .col.open { overflow-y: hidden; }
+    .col.closed { width: 6.1rem; overflow: hidden; }
+    .no-anim, .no-anim * { transition: none !important; }
+
+    .col-collapsed {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: #efefef;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .col.closed .col-collapsed { opacity: 1; pointer-events: auto; }
+    .col-collapsed span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    /* ---------- Singolo progetto ---------- */
+    .project {
+      position: relative;
+      cursor: pointer;
+      height: calc(16.75vw + 8.124rem);
+      overflow: hidden;
+    }
+    .col:not(.open):not(.closed) .project:not(.active) { transition: height .4s ease; }
+    .col:not(.open):not(.closed) .project:not(.active):hover { height: calc(18.425vw + 7.9364rem); }
+    .project.active { height: 100vh; cursor: default; }
+
+    .row {
+      display: flex;
+      white-space: nowrap;
+      padding: 8.4rem 4rem 1.6rem 2.8rem;
+      overflow: hidden;
+      scrollbar-width: none;
+    }
+    .row::-webkit-scrollbar { display: none; }
+    .col:not(.open):not(.closed) .project:not(.active) .row { overflow: visible; }
+    .project.active .row {
+      cursor: grab;
+      height: 100vh;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-left: 2.8rem;
+    }
+    /* Quando la striscia scorre, il contenuto si ferma con un taglio netto accanto al titolo */
+    .project.active .row.scrolled {
+      -webkit-mask-image: linear-gradient(90deg, transparent 25vw, #000 25vw);
+      mask-image: linear-gradient(90deg, transparent 25vw, #000 25vw);
+    }
+    .project.active .row.dragging,
+    .project.active .row.dragging * { cursor: grabbing; user-select: none; }
+
+    .info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25vw;
+      height: 100%;
+      display: flex;
+      padding: 8.4rem 1rem 0 2.1rem;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .closes { font-size: 1.2rem; }
+    .info .num { margin-right: 2.7rem; color: var(--black); }
+    .project.active .info .closes { cursor: pointer; pointer-events: auto; }
+
+    .title-clip {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+      padding-right: 3.5rem;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent);
+      mask-image: linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent);
+    }
+    .project.active .title-clip { -webkit-mask-image: none; mask-image: none; overflow: visible; }
+    .title-marquee {
+      display: block;
+      white-space: nowrap;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: .4rem;
+      will-change: transform;
+    }
+    .info h3 { font-weight: 400; color: var(--grey); }
+    .city::after { content: ', '; }
+
+    /* Scheda crediti */
+    .slide-credits {
+      flex: none;
+      overflow: hidden;
+      margin-right: 1rem;
+      width: calc(47.5vw - .02rem);
+      transition: width .5s ease;
+    }
+    .credits-inner {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-right: 1rem;
+      white-space: normal;
+    }
+    .credit {
+      display: flex;
+      padding-bottom: .2rem;
+      margin-bottom: .2rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 1.2rem;
+      line-height: 1.28;
+      color: #000;
+    }
+    .credit:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+    .credit > span:first-child { width: 40%; }
+    .credit > span:last-child { width: 60%; padding-left: .5rem; }
+    .credits-fade {
+      position: sticky;
+      bottom: 0;
+      height: 6rem;
+      margin-top: -6rem;
+      margin-right: 1rem;
+      background: linear-gradient(180deg, #efefef00, #efefef);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .project.active .slide-credits { height: calc(100vh - 21.18rem); width: 32.3rem; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+    .project.active .slide-credits.faded .credits-fade { opacity: 1; }
+
+    /* Immagini */
+    picture { position: relative; display: block; overflow: hidden; background: #e4e4e4; }
+    .picture-featured {
+      flex: none;
+      margin-right: 3.5rem;
+      height: calc(16.75vw - 4.221rem);
+      width: calc(27.5vw - 6.58rem);
+      padding-left: calc(2.5vw - .28rem);
+      background-clip: content-box;
+      transition: width .5s ease, height .5s ease, padding .5s ease;
+    }
+    .col:not(.open):not(.closed) .project:not(.active):hover .picture-featured {
+      height: calc(18.425vw - 4.4086rem);
+      padding-left: 0;
+    }
+    .picture-featured img { width: 100%; height: 100%; object-fit: contain; object-position: center; pointer-events: none; }
+    .project.active .picture-featured {
+      height: calc(100vh - 21.18rem);
+      width: calc(149.25373vh - 31.61194rem);
+      padding-left: 0;
+    }
+
+    .slide-image { flex: none; margin-right: 3.5rem; }
+    .slide-image picture {
+      height: calc((25vw - 2.8rem) * .67);
+      transition: width .5s ease, height .5s ease;
+    }
+    .slide-image img { width: auto; height: 100%; pointer-events: none; }
+    .project.active .slide-image picture { height: calc(100vh - 21.18rem); }
+
+    .img-reveal { opacity: 0; transition: opacity .45s ease; }
+    .img-reveal.is-revealed { opacity: 1; }
+
+    .add-icon {
+      position: absolute;
+      bottom: .7rem;
+      right: .7rem;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .add-icon svg { width: .77rem; height: .77rem; display: block; color: #fff; }
+    .project.active .add-icon { opacity: 1; pointer-events: auto; }
+    .project.active picture { cursor: pointer; }
+
+    /* Testi */
+    .slide-text {
+      flex: none;
+      margin-right: 3.5rem;
+      width: 32.3rem;
+      white-space: normal;
+      font-size: 1.2rem;
+      line-height: 1.3;
+      color: var(--black);
+    }
+    .slide-text p { padding-bottom: 1lh; }
+
+    .project picture:not(.picture-featured), .slide-credits, .slide-image, .slide-text {
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .project.active picture:not(.picture-featured),
+    .project.active .slide-credits,
+    .project.active .slide-image,
+    .project.active .slide-text { opacity: 1; }
+
+    /* Navigazione in basso */
+    .navigator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 6.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem 0 2.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .project.active .navigator { opacity: 1; }
+    .project.active .navigator button { pointer-events: auto; }
+    .navigator .arrow { display: block; color: var(--grey-arrow); }
+    .navigator .arrow svg { width: 1.8rem; height: 1.6rem; display: block; }
+    .navigator .next { font-size: 1.2rem; line-height: .9; white-space: nowrap; color: var(--grey); }
+    .navigator button:disabled { cursor: default; opacity: .25; pointer-events: none !important; }
+
+    /* Visualizzatore immagine */
+    .reader {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8.4rem 2.8rem 6.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .reader.is-open { opacity: 1; pointer-events: auto; }
+    .reader img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .reader-close {
+      position: absolute;
+      top: 0;
+      right: 4rem;
+      height: 6rem;
+      font-size: 1.2rem;
+      color: var(--black);
+    }
+
+    /* ---------- Lista a griglia (desktop e tablet) ---------- */
+    @media (min-width: 768px) {
+      .col:not(.open) .col-inner {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 2.1rem;
+        row-gap: 4.8rem;
+        padding: 8.4rem 2.8rem 13rem 2.1rem;
+      }
+      .col:not(.open) .project,
+      .col:not(.open):not(.closed) .project:not(.active):hover {
+        height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+      }
+      .col:not(.open) .project .row { order: 1; display: block; padding: 0; overflow: visible; }
+      .col:not(.open) .project .slide-credits,
+      .col:not(.open) .project .slide-image,
+      .col:not(.open) .project .slide-text,
+      .col:not(.open) .project .navigator { display: none; }
+      .col:not(.open) .project .picture-featured,
+      .col:not(.open):not(.closed) .project:not(.active):hover .picture-featured {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2400 / 1608;
+        margin: 0;
+        padding: 0;
+      }
+      .col:not(.open) .project .picture-featured img { transition: transform .6s cubic-bezier(.16, 1, .3, 1); }
+      .col:not(.open) .project .info {
+        position: static;
+        order: 2;
+        width: 100%;
+        height: auto;
+        padding: 1.2rem 0 0;
+      }
+      .col.open .project:not(.active) { display: none; }
+    }
+    @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+      .col:not(.open) .project:hover .picture-featured img { transform: scale(1.03); }
+    }
+    @media (min-width: 768px) and (max-width: 1099px) {
+      .col:not(.open) .col-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* Nessuna immagine viene tagliata: si adatta al riquadro mantenendo le proporzioni */
+    .picture-featured, .slide-image picture { background: transparent; }
+    .project.active .picture-featured { width: auto; aspect-ratio: var(--ar); }
+    .slide-image img { object-fit: contain; }
+    footer { display: none; }
+
+    /* ---------- Mobile (come il sito, sotto i 768 px) ---------- */
+    @media (max-width: 767px) {
+      body { overflow: auto; }
+      .header-link, .rule-left { margin-right: 1.2rem; }
+      .rule-mid, .cat-btn--2, .cat-list--2 { display: none; }
+      .cat-list--1 { width: calc(100% - var(--slot-left, 16.1rem)); padding-right: 1rem; }
+      .cat-list::after { right: 1rem; width: 8rem; }
+      .reader-close { right: 1rem; }
+
+      .projects-grid { position: static; height: auto; padding-top: 6rem; }
+      .grid-cols-wrapper { display: block; height: auto; }
+      .col, .col.open, .col.closed { width: 100%; height: auto; overflow: visible; border-right: 0; padding-bottom: 4rem; transition: none; }
+      .col--2 { display: none; }
+      .col-inner { padding-bottom: 0; }
+      .col-collapsed { display: none; }
+
+      .project, .project.active { height: auto !important; overflow: visible; margin-bottom: 4rem; display: flex; flex-direction: column; }
+      .project .row { order: 1; }
+      .project .navigator { order: 3; }
+      .project.active { margin-bottom: 0; }
+      .col.open .project:not(.active) { display: none; }
+      .row, .project.active .row {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+        padding: 0 1rem;
+        white-space: normal;
+        cursor: default;
+      }
+      .project.active .row { padding: 2.4rem 1rem 3rem; }
+      .info, .project.active .info { position: static; order: 2; width: 100%; height: auto; padding: 0 1rem; }
+      .project.active .info { order: 0; padding: 2.4rem 1rem 2.4rem; }
+      .project.active .row { padding-top: 0 !important; }
+      .title-clip { -webkit-mask-image: none; mask-image: none; overflow: visible; padding-right: 0; }
+      .title-marquee { transform: none !important; white-space: normal; }
+
+      .project:not(.active) .slide-credits,
+      .project:not(.active) .slide-image,
+      .project:not(.active) .slide-text { display: none; }
+
+      .picture-featured,
+      .col:not(.open):not(.closed) .project:not(.active):hover .picture-featured,
+      .project.active .picture-featured {
+        aspect-ratio: var(--ar, 2400 / 1608);
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        padding-left: 0;
+        transition: none;
+      }
+      .project:not(.active) .picture-featured { margin-bottom: 1.2rem; }
+      .project.active .picture-featured { margin-bottom: 2.5rem; }
+      .project.active .slide-credits,
+      .project.active .slide-image,
+      .project.active .slide-text { width: 100% !important; height: auto !important; margin: 0 0 2.5rem; overflow: visible; }
+      .project.active .slide-credits { margin-bottom: 5rem; }
+      .credits-fade { display: none; }
+      .slide-image picture, .project.active .slide-image picture { height: auto; width: 100%; transition: none; }
+      .slide-image img { width: 100%; height: auto; }
+      .project.active .picture-featured + .slide-image,
+      .project.active .slide-image + .slide-image { margin-top: -1.5rem; }
+      .slide-text p { padding-bottom: 1.6lh; }
+
+      .navigator { position: static; height: 5rem; justify-content: center; padding: 0 1rem; }
+      .navigator .arrow, .project:not(.active) .navigator { display: none; }
+
+      footer { display: block; }
+    }
+
+  </style>
+</head>
+<body class="page-projects">
+
+  <div id="site-loader"><span>0%</span></div>
+
+  <header>
+    <button class="burger-wrapper" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel">
+      <span class="burger"><span></span><span></span><span></span></span>
+    </button>
+    <a class="header-logo" href="https://externalreference.com/" target="_blank" rel="noopener"><svg class="" viewBox="0 0 841.924194 292.308044" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="External Reference" fill="currentColor"><g> <g> <polygon points="77.662476 114.060181 17.655457 114.060181 17.655457 74.958191 72.076477 74.958191 72.076477 58.383179 17.655457 58.383179 17.655457 19.101196 77.662476 19.101196 77.662476 2.704163 .000488 2.704163 .000488 130.456177 77.662476 130.456177 77.662476 114.060181"/> <path d="M110.487183,130.456848l21.982971-31.890991,22.341003,31.890991h20.359985c-5.221985-7.028992-26.669983-37.117004-31.890991-44.145996l30.809998-42.521973h-20.001953l-20.89502,30.449951-21.268982-30.449951h-20.538025l31.167969,42.521973-32.247986,44.145996h20.18103Z"/> <path d="M198.079956,106.670959c0,15.677002,9.371033,24.687012,24.143005,24.687012,5.767029,0,10.095032-1.080017,11.531982-1.624023v-14.414001c-1.436951.361023-4.505981.722046-6.667969.722046-8.827026,0-12.067017-3.963013-12.067017-11.893005v-45.044006h18.734985v-15.31604h-18.734985v-27.387939h-15.494995v14.053955c0,7.567993-3.971008,13.333984-13.335022,13.333984h-4.685974v15.31604h16.575989v47.565979Z"/> <path d="M291.973938,133.161743c20.18103,0,34.059998-12.075989,38.924011-27.388977l-14.601013-5.046997c-3.240967,9.729004-10.264954,17.47699-24.322998,17.47699-14.593994,0-25.766968-10.809021-26.125-26.304993h65.228027c.179016-1.080017.357971-3.244019.357971-5.40802,0-27.026978-14.950989-45.404968-41.620972-45.404968-21.804993,0-41.440979,18.560974-41.440979,45.765991,0,29.369995,20.359009,46.310974,43.600952,46.310974ZM289.992981,56.039734c15.315979,0,23.420959,9.729004,23.786011,22.162048h-47.394043c.723022-11.170044,9.371033-22.162048,23.608032-22.162048Z"/> <path d="M370.024902,87.033142c0-19.099976,9.549988-26.668945,23.777954-26.668945,2.347046,0,4.865051.178955,7.390015.539978v-18.017029c-.901001-.182007-3.23999-.539978-5.586975-.539978-8.827026,0-19.637024,3.241028-25.945984,16.575989v-15.133972h-16.575012v86.667969h16.940002v-43.424011Z"/> <path d="M436.169373,80.365845c0-13.156006,6.847046-23.786011,20.182007-23.786011,15.130005,0,20.179993,9.729004,20.179993,21.805054v52.07196h16.932007v-54.955017c0-19.278992-10.265015-34.237976-30.989014-34.237976-10.086975,0-20.359985,4.14502-26.669983,14.958984v-12.43396h-16.575012v86.667969h16.940002v-50.091003Z"/> <path d="M572.059265,118.746033c0,6.30603.534973,9.551025.900024,11.710999h16.575989c-.36499-2.159973-1.080017-6.666992-1.080017-14.235962v-43.423035c0-16.936951-10.094971-31.712952-36.041016-31.712952-18.735962,0-33.695007,11.531006-35.497986,28.106995l16.21698,3.783997c1.082031-10.091003,7.748047-17.47699,19.647034-17.47699,13.145996,0,18.734009,7.028992,18.734009,15.494995,0,3.065979-1.437988,5.765991-6.66803,6.488953l-23.419983,3.423035c-14.958984,2.161011-26.312012,10.809998-26.312012,26.309021,0,13.690979,11.353027,25.945984,29.015015,25.945984,15.495972,0,24.14502-8.291016,27.929993-14.415039ZM532.410278,106.313049c0-7.747009,5.411011-11.893005,12.620972-12.972961l26.483032-3.968018v3.968018c0,18.917969-11.174011,25.584961-25.044983,25.584961-8.64801,0-14.059021-6.127014-14.059021-12.612Z"/> <rect x="614.78949" width="16.942017" height="130.455933"/> <path d="M87.212952,199.869446c0-21.08197-14.958984-38.018005-39.102966-38.018005H0v127.752014h17.833984v-52.255005h19.10199l29.19397,52.255005h20.539001l-30.453979-53.513977c19.279968-3.605042,30.997986-17.838013,30.997986-36.220032ZM44.869934,221.492432h-27.03595v-43.784973h27.03595c14.415039,0,24.143005,8.648987,24.143005,22.161987,0,13.156982-9.727966,21.622986-24.143005,21.622986Z"/> <path d="M140.575684,200.23175c-21.80603,0-41.442017,18.559998-41.442017,45.765991,0,29.369995,20.359009,46.309998,43.60199,46.309998,20.18103,0,34.052002-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.768005-10.809021-26.125977-26.304016h65.229004c.177979-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.619995-45.403992ZM117.14563,237.348755c.723022-11.171021,9.372009-22.161987,23.609009-22.161987,15.315002,0,23.421021,9.729004,23.786011,22.161987h-47.39502Z"/> <path d="M209.067261,188.337769v14.597961h-16.031982v15.31604h16.031982v71.35199h17.484009v-71.35199h20.895996v-15.31604h-20.895996v-13.695984c0-11.893982,7.747986-14.776978,13.692017-14.776978,4.32196,0,6.48999.722961,7.390991,1.083984v-15.136963c-.723022-.540039-4.329041-1.80304-10.095032-1.80304-15.674011,0-28.471985,10.452026-28.471985,29.731018Z"/> <path d="M296.480896,200.23175c-21.804993,0-41.44104,18.559998-41.44104,45.765991,0,29.369995,20.359009,46.309998,43.60199,46.309998,20.18103,0,34.059998-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.767944-10.809021-26.125977-26.304016h65.229004c.177979-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.620972-45.403992ZM273.05188,237.348755c.723022-11.171021,9.372009-22.161987,23.607971-22.161987,15.31604,0,23.421997,9.729004,23.787048,22.161987h-47.39502Z"/> <path d="M376.326904,218.069641v-15.133972h-16.575012v86.667969h16.940002v-43.424011c0-19.099976,9.550964-26.668945,23.778015-26.668945,2.347961,0,4.865967.178955,7.390991.539978v-18.017029c-.901001-.181946-3.23999-.539978-5.587036-.539978-8.828003,0-19.638,3.241028-25.94696,16.575989Z"/> <path d="M459.412598,200.23175c-21.805054,0-41.442017,18.559998-41.442017,45.765991,0,29.369995,20.359985,46.309998,43.60199,46.309998,20.180969,0,34.051025-12.075989,38.924011-27.388l-14.60199-5.046997c-3.240051,9.729004-10.264038,17.476013-24.322021,17.476013-14.593994,0-25.768005-10.809021-26.125977-26.304016h65.22998c.177002-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.952026-45.403992-41.620972-45.403992ZM435.982544,237.348755c.723022-11.171021,9.372009-22.161987,23.609009-22.161987,15.31604,0,23.421021,9.729004,23.786011,22.161987h-47.39502Z"/> <path d="M565.926453,200.409851c-10.093994,0-20.359985,4.145996-26.667969,14.958984v-12.432983h-16.575989v86.66803h16.940979v-50.091003c0-13.156006,6.846008-23.786011,20.179993-23.786011,15.130981,0,20.18103,9.729004,20.18103,21.803955v52.073059h16.932007v-54.956055c0-19.278992-10.264038-34.237976-30.990051-34.237976Z"/> <path d="M660.552917,276.630066c-14.057983,0-26.484009-10.630005-26.484009-30.450012,0-20.180969,12.612976-30.270996,26.304993-30.270996,14.77301,0,21.082031,9.90802,23.242004,18.377991l15.315979-6.489014c-3.60498-13.151978-15.493958-27.566956-38.557983-27.566956-24.687988,0-43.60199,18.917969-43.60199,45.948975,0,26.304993,18.557007,46.127991,43.781006,46.127991,22.52002,0,34.953979-14.597961,39.10199-27.031006l-14.958984-6.484985c-1.981018,6.846008-7.926025,17.838013-24.143005,17.838013Z"/> <path d="M753.018127,200.23175c-21.804993,0-41.44104,18.559998-41.44104,45.765991,0,29.369995,20.359009,46.309998,43.601013,46.309998,20.179993,0,34.059021-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.766968-10.809021-26.125-26.304016h65.229004c.177002-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.620972-45.403992ZM729.588135,237.348755c.722961-11.171021,9.370972-22.161987,23.607971-22.161987,15.315979,0,23.421997,9.729004,23.786987,22.161987h-47.394958Z"/> <path d="M821.471191,172.209839c-11.252014,0-20.281006,9.251038-20.281006,20.565002,0,11.315002,9.028992,20.619995,20.281006,20.619995,11.314026,0,20.453003-9.304993,20.453003-20.619995,0-11.313965-9.138977-20.565002-20.453003-20.565002Z"/> </g> </g></svg></a>
+    <a class="header-link" href="index.html#projects">Category</a>
+    <span class="v-rule rule-left"></span>
+    <span class="cat-slot" id="catSlot">
+      <button type="button" class="cat-btn cat-btn--1">All</button>
+      <button type="button" class="back-btn">Back</button>
+    </span>
+
+    <div class="cat-list cat-list--1">
+      <div class="cats-scroll">
+          <button type="button" data-cat="all">All</button>
+          <button type="button" data-cat="residential">Residential</button>
+          <button type="button" data-cat="hotel-resort">Hotel &amp; Resort</button>
+          <button type="button" data-cat="mixed-use">Mixed Use</button>
+          <button type="button" data-cat="public-space">Public Space</button>
+      </div>
+      <span class="cat-close" role="button" aria-label="Close"></span>
+    </div>
+  </header>
+
+  <nav class="menu-panel" id="menuPanel" aria-label="Menu">
+    <ul>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="urban-architecture.html">Urban &amp; Architecture</a></li>
+      <li><a href="index.html#projects">Interior</a></li>
+      <li><a href="index.html#projects">Art &amp; Collectible Design</a></li>
+    </ul>
+    <small>External Reference</small>
+    <ul>
+      <li><a href="https://externalreference.com/studio/" target="_blank" rel="noopener">Studio</a></li>
+      <li><a href="https://externalreference.com/services/" target="_blank" rel="noopener">Services</a></li>
+      <li><a href="https://externalreference.com/news/" target="_blank" rel="noopener">News</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="projects-grid">
+      <div class="grid-cols-wrapper">
+        <div class="col col--1">
+          <div class="col-inner"></div>
+          <div class="col-collapsed"><span></span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="pool" hidden>
+    <article class="project" data-slug="aurom" data-cat="residential" id="aurom">
+      <div class="info">
+        <span class="closes num">001</span>
+        <div class="title-clip">
+          <a class="title-link" href="#aurom"><h2 class="title-marquee">Aurom Residences, D11</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2025</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Aurom Residences, D11</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Typology</span><span>Residential urban design</span></div>
+            <div class="credit"><span>Area</span><span>Masterplan 42,000 m², villas 1,150 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u001" width="1500" height="839" alt="Aurom Residences, D11">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>District 11 at Mohammed Bin Rashid Al Maktoum City is a carefully planned master community that embraces the rhythm of nature at the heart of Dubai. Designed for families and individuals seeking balance and wellbeing, it redefines premium living through a closer connection with the landscape. A new expression of luxury shaped by design and nature.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/843">
+            <img class="img-reveal" data-er="u002" width="1500" height="843" alt="Aurom Residences, D11">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Within this context, Aurom is designed as a sanctuary where water, greenery, and luxury architecture coexist in perfect harmony. Its expansive villas create a landscape of privacy, light, and space. Each residence opens onto private gardens and outdoor living areas, encouraging a daily connection with nature.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/837">
+            <img class="img-reveal" data-er="u003" width="1500" height="837" alt="Aurom Residences, D11">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The central feature of the Aurom Villas is the water landscape, a space where water shapes the atmosphere and experience, enhancing the aesthetic and sensory quality of the community by bringing movement, reflection, and sound.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1057">
+            <img class="img-reveal" data-er="u004" width="1500" height="1057" alt="Aurom Residences, D11">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/837">
+            <img class="img-reveal" data-er="u005" width="1500" height="837" alt="Aurom Residences, D11">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="al-khawaneej-villa" data-cat="residential" id="al-khawaneej-villa">
+      <div class="info">
+        <span class="closes num">002</span>
+        <div class="title-clip">
+          <a class="title-link" href="#al-khawaneej-villa"><h2 class="title-marquee">Al Khawaneej Villa</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Al Khawaneej Villa</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Area</span><span>751.31 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/844">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u006" width="1500" height="844" alt="Al Khawaneej Villa">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>A luxurious villa where arches repeat like a colonnade of light, guiding the way through shaded thresholds into the landscape beyond. Each arch frames a different scene, a garden, a pool, a horizon, making each moment a form of discovery.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/837">
+            <img class="img-reveal" data-er="u007" width="1500" height="837" alt="Al Khawaneej Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Inside, double-height volumes and refined finishes carry the same sense of scale and light, softening the line between built form and open land.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u008" width="1500" height="844" alt="Al Khawaneej Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u009" width="1500" height="844" alt="Al Khawaneej Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="al-layali-villa" data-cat="residential" id="al-layali-villa">
+      <div class="info">
+        <span class="closes num">003</span>
+        <div class="title-clip">
+          <a class="title-link" href="#al-layali-villa"><h2 class="title-marquee">Al Layali Villa</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Al Layali Villa</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Area</span><span>751.31 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1364/767">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u010" width="1364" height="767" alt="Al Layali Villa">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The house is conceived as a composition of four cubic volumes connected by a triple-height space that becomes the central core of the project. Within this space, an organic sculptural staircase acts as the focal element, connecting the different levels of the house.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1280/719">
+            <img class="img-reveal" data-er="u011" width="1280" height="719" alt="Al Layali Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Inspired by Arab architecture and the spatial qualities of mosques, the design reinterprets the traditional arch as a contemporary architectural element. The façade arcades transform the classical arch into a three-dimensional sculpted feature, creating a dialogue between heritage and modern expression.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1338/747">
+            <img class="img-reveal" data-er="u012" width="1338" height="747" alt="Al Layali Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/842">
+            <img class="img-reveal" data-er="u013" width="1500" height="842" alt="Al Layali Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="al-jouri-villa" data-cat="residential" id="al-jouri-villa">
+      <div class="info">
+        <span class="closes num">004</span>
+        <div class="title-clip">
+          <a class="title-link" href="#al-jouri-villa"><h2 class="title-marquee">Al Jouri Villa</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Al Jouri Villa</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Area</span><span>751.31 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/844">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u014" width="1500" height="844" alt="Al Jouri Villa">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The house is conceived as a composition of four cubic volumes connected by a triple-height space that becomes the central core of the project. Within this space, an organic sculptural staircase acts as the focal element, connecting the different levels of the house.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u015" width="1500" height="844" alt="Al Jouri Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Inspired by local vernacular architecture and the spatial qualities of spaces of worship, the design reinterprets the traditional arch as a contemporary architectural element. The façade arcades transform the classical arch into a three-dimensional sculpted feature, creating a dialogue between heritage and modern expression.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u016" width="1500" height="844" alt="Al Jouri Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u017" width="1500" height="844" alt="Al Jouri Villa">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="villa-chiaramonte" data-cat="residential" id="villa-chiaramonte">
+      <div class="info">
+        <span class="closes num">005</span>
+        <div class="title-clip">
+          <a class="title-link" href="#villa-chiaramonte"><h2 class="title-marquee">Villa Chiaramonte</h2></a>
+          <h3 class="closes"><span class="city">Chiaramonte Gulfi, Italy</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Villa Chiaramonte</span></div>
+            <div class="credit"><span>Location</span><span>Chiaramonte Gulfi, Italy</span></div>
+            <div class="credit"><span>Area</span><span>1,340 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/837">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u018" width="1500" height="837" alt="Villa Chiaramonte">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>A contemporary reinterpretation of the traditional Italian tenuta, rooted in the landscape of Chiaramonte. Local stone, terracotta, and timber ground the villa in the language of the countryside, while a more restrained, contemporary geometry reframes the estate for present-day living.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/799">
+            <img class="img-reveal" data-er="u019" width="1500" height="799" alt="Villa Chiaramonte">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Courtyards and loggias mediate between built form and open land, extending the interior into orchards, vineyards, and rolling hills beyond. The result is an architecture of continuity, honoring the rural tradition it comes from while speaking, unmistakably, in its own voice.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/799">
+            <img class="img-reveal" data-er="u020" width="1500" height="799" alt="Villa Chiaramonte">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="costa-do-vizir" data-cat="residential" id="costa-do-vizir">
+      <div class="info">
+        <span class="closes num">006</span>
+        <div class="title-clip">
+          <a class="title-link" href="#costa-do-vizir"><h2 class="title-marquee">Costa do Vizir Wellness Complex</h2></a>
+          <h3 class="closes"><span class="city">Setúbal, Portugal</span><span>2024</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Costa do Vizir Wellness Complex</span></div>
+            <div class="credit"><span>Location</span><span>Setúbal, Portugal</span></div>
+            <div class="credit"><span>Area</span><span>1,200 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/838">
+          <img class="img-reveal" data-critical loading="eager" decoding="async" data-er="u021" width="1500" height="838" alt="Costa do Vizir Wellness Complex">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Stone walls hold the silence of a quiet luxury villa immersed in the Mediterranean nature. Local elements and materials trace the line between architecture and landscape, filtering light through deep overhangs and framing views toward the serene outdoor spaces.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/795">
+            <img class="img-reveal" data-er="u022" width="1500" height="795" alt="Costa do Vizir Wellness Complex">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Pools, gardens, and interior volumes are arranged to slow the rhythm of the day, shaping a wellness retreat where material honesty and spatial restraint become the true luxury.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/795">
+            <img class="img-reveal" data-er="u023" width="1500" height="795" alt="Costa do Vizir Wellness Complex">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/796">
+            <img class="img-reveal" data-er="u024" width="1500" height="796" alt="Costa do Vizir Wellness Complex">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="punta-del-chileno" data-cat="residential" id="punta-del-chileno">
+      <div class="info">
+        <span class="closes num">007</span>
+        <div class="title-clip">
+          <a class="title-link" href="#punta-del-chileno"><h2 class="title-marquee">Punta del Chileno</h2></a>
+          <h3 class="closes"><span class="city">Maldonado, Uruguay</span><span>2024</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Punta del Chileno</span></div>
+            <div class="credit"><span>Location</span><span>Maldonado, Uruguay</span></div>
+            <div class="credit"><span>Typology</span><span>Resort masterplan</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1090/610">
+          <img class="img-reveal" decoding="async" data-er="u025" width="1090" height="610" alt="Punta del Chileno">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The project envisions a sustainable luxury development that harmoniously integrates contemporary architecture with Uruguay’s natural landscape. Preserving the existing pine forest, the masterplan carefully shapes circulation, plots, and buildings around the site’s topography and views. Local materials, native vegetation, organic farming, natural water filtration, and sustainable construction techniques create a refined community that balances luxury, wellbeing, and environmental stewardship.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:934/1500">
+            <img class="img-reveal" data-er="u026" width="934" height="1500" alt="Punta del Chileno">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The villas are constructed with locally sourced wood and rammed earth. Carefully positioned to complement the natural topography, each villa maximizes its connection to the surrounding landscape and views.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:934/1500">
+            <img class="img-reveal" data-er="u027" width="934" height="1500" alt="Punta del Chileno">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The design process follows a minimum-intervention approach: only the trees necessary to accommodate the main roads and building plots are removed. The remaining vegetation is arranged to optimize each villa’s views, strategically retaining shorter trees as the layout approaches the sea-view front. A grading system, carried out through spatial analysis tools, ranks each plot according to its visibility.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1000">
+            <img class="img-reveal" data-er="u028" width="1500" height="1000" alt="Punta del Chileno">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The natural pools are designed with a natural filtration system that significantly reduces the need for chemicals, creating a healthier and more environmentally sensitive swimming experience within the surrounding landscape.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="jarvenpaa" data-cat="residential" id="jarvenpaa">
+      <div class="info">
+        <span class="closes num">008</span>
+        <div class="title-clip">
+          <a class="title-link" href="#jarvenpaa"><h2 class="title-marquee">Järvenpää</h2></a>
+          <h3 class="closes"><span class="city">Järvenpää, Finland</span><span>2009</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Järvenpää</span></div>
+            <div class="credit"><span>Location</span><span>Järvenpää, Finland</span></div>
+            <div class="credit"><span>Area</span><span>130,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u029" width="1500" height="839" alt="Järvenpää">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The urban development proposal for the Tuusulanjärvi Lake area in Finland aims to harmonize natural and artificial landscapes, inspired by the interconnected structure of water and land in Finland’s Lake District. The design incorporates “eco-formations,” including water-terracing systems that channel and purify rainwater, improving the lake’s ecological health and organizing housing and services around these sustainable features.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u030" width="1059" height="1500" alt="Järvenpää">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The project seeks a zero-carbon footprint, using renewable energy sources like wind turbines and solar panels, bioclimatic buildings made from local, recyclable materials, and electric public transportation. Pedestrian and cycling paths are prioritized to minimize the use of polluting vehicles. Public spaces, recreational areas, and solutions for recycling, biomass heating, and noise management complete the design, fostering a strong connection between residents and nature.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u031" width="1500" height="844" alt="Järvenpää">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-one" data-cat="residential" id="confidential-one">
+      <div class="info">
+        <span class="closes num">009</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-one"><h2 class="title-marquee">Confidential One</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential One</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,236 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u032" width="1500" height="839" alt="Confidential One">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Set within a steep terrain overlooking the sea, the house is conceived as a dialogue between architecture and landscape. The concept explores the idea of a futuristic sculptural residence, resembling a spacecraft anchored to the mountain at only two points and extending outward towards the horizon.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1068">
+            <img class="img-reveal" data-er="u033" width="1500" height="1068" alt="Confidential One">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Suspended above the slope, the volume creates a sense of movement and lightness, transforming the house into an iconic architectural object that merges technology, nature, and an exceptional coastal setting.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-two" data-cat="residential" id="confidential-two">
+      <div class="info">
+        <span class="closes num">010</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-two"><h2 class="title-marquee">Confidential Two</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential Two</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,130 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u034" width="1500" height="839" alt="Confidential Two">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The house pays homage to its dramatic natural setting, conceived as a sequence of crystalline formations that emerge directly from the rock, as if shaped by the geological landscape itself. These sculptural volumes rise from the cliff, creating a seamless fusion between architecture and nature.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1058/1500">
+            <img class="img-reveal" data-er="u035" width="1058" height="1500" alt="Confidential Two">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Carefully carved openings frame the sea while strengthening the connection with the surroundings. The house becomes more enclosed along its sides, blending into the rock, while opening completely towards the horizon to create a continuous dialogue between interior, landscape, and sea.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/843">
+            <img class="img-reveal" data-er="u036" width="1500" height="843" alt="Confidential Two">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-three" data-cat="residential" id="confidential-three">
+      <div class="info">
+        <span class="closes num">011</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-three"><h2 class="title-marquee">Confidential Three</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential Three</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,130 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u037" width="1500" height="839" alt="Confidential Three">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Terraform emerges as a monumental reconfiguration of the natural landscape, a bridge between two sandstone hills carved by time. Inspired by erosion and geological forces, it introduces a digital reconstruction of the terrain, where cascading pixelated terraces echo the patterns of nature’s wear and flow.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u038" width="1059" height="1500" alt="Confidential Three">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The intervention transforms the valley into an inhabitable terrain, a ridge that rises and falls with the landscape’s contours. As visitors ascend through this layered topography, they encounter spaces for contemplation, where the desert meets the sea and the ancient dialogue between earth and time finds its contemporary voice.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u039" width="1500" height="844" alt="Confidential Three">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-four" data-cat="residential" id="confidential-four">
+      <div class="info">
+        <span class="closes num">012</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-four"><h2 class="title-marquee">Confidential Four</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential Four</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,045 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u040" width="1500" height="839" alt="Confidential Four">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Rising from its ancient slumber deep within the mountain, the Dormant Meteorite emerges, unveiling subtle glimmers of light from its core. As it ascends, it offers inhabitants unobstructed views over the coastline and the open sea.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u041" width="1500" height="844" alt="Confidential Four">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The formation lifts its occupants higher with every moment, immersing them in the landscape that unfolds below: a panoramic journey through sea, mountains, and sky, designed for reflection from an elevated, otherworldly vantage.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u042" width="1500" height="844" alt="Confidential Four">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-five" data-cat="residential" id="confidential-five">
+      <div class="info">
+        <span class="closes num">013</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-five"><h2 class="title-marquee">Confidential Five</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential Five</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,130 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u043" width="1500" height="839" alt="Confidential Five">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Mirage is a cubic structure on the coastline, set against the desert landscape and a coral reef offshore. Its design balances solidity and transparency, with tall, narrow windows that evoke desert light. Reflective surfaces create a levitating illusion, aligning the cube’s midpoint with the horizon to connect earth and sky.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u044" width="1059" height="1500" alt="Confidential Five">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The fractured façade reads as resilience and adaptation, echoing the enduring character of desert cultures. Conceived as a contemplative living space, Mirage bridges cultural heritage and contemporary design.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u045" width="1500" height="844" alt="Confidential Five">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="confidential-six" data-cat="residential" id="confidential-six">
+      <div class="info">
+        <span class="closes num">014</span>
+        <div class="title-clip">
+          <a class="title-link" href="#confidential-six"><h2 class="title-marquee">Confidential Six</h2></a>
+          <h3 class="closes"><span class="city">Undisclosed</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Confidential Six</span></div>
+            <div class="credit"><span>Location</span><span>Undisclosed</span></div>
+            <div class="credit"><span>Area</span><span>2,130 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u046" width="1500" height="839" alt="Confidential Six">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The Enclave rises atop a flat hill on a small peninsula, where cliffs meet the sea to form a secluded refuge. Like sandstone formations shaped over millennia, the mansion is built as a series of horizontal slabs, layers that echo the geological rhythms of the land.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u047" width="1059" height="1500" alt="Confidential Six">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>This stratification becomes the guiding concept, drawing on hidden layers of time to craft a structure in dialogue with its surroundings. Rooted in the earth yet opening toward the horizon, The Enclave integrates with the surrounding topography, its geometry honouring the passage of both time and place.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u048" width="1500" height="844" alt="Confidential Six">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="muscat-villa" data-cat="residential" id="muscat-villa">
+      <div class="info">
+        <span class="closes num">015</span>
+        <div class="title-clip">
+          <a class="title-link" href="#muscat-villa"><h2 class="title-marquee">Muscat Villa</h2></a>
+          <h3 class="closes"><span class="city">Muscat, Oman</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Muscat Villa</span></div>
+            <div class="credit"><span>Location</span><span>Muscat, Oman</span></div>
+            <div class="credit"><span>Typology</span><span>Private villa</span></div>
+            <div class="credit"><span>Area</span><span>2,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u049" width="1500" height="839" alt="Muscat Villa">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Located on the Gulf of Oman, the Muscat Villa combines privacy, openness, and futuristic design. Conceived as a protective shell against the harsh climate, the residence frames expansive coastal views while blending with the arid landscape. The villa becomes a sculptural sanctuary immersed within the Omani coastline.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="the-dna" data-cat="residential" id="the-dna">
+      <div class="info">
+        <span class="closes num">016</span>
+        <div class="title-clip">
+          <a class="title-link" href="#the-dna"><h2 class="title-marquee">The DNA</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2025</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>The DNA</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1344/755">
+          <img class="img-reveal" decoding="async" data-er="u050" width="1344" height="755" alt="The DNA">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The DNA towers symbolize continuity and legacy in Dubai. Two forms intertwined like strands of DNA, representing the transmission of values, vision, and identity from one generation to the next. Rooted in the strength of the past and rising toward the future, the towers embody the evolution of heritage into innovation.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1058/1500">
+            <img class="img-reveal" data-er="u051" width="1058" height="1500" alt="The DNA">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Each façade reads as a living archive, materials and light tracing the passage from origin to horizon. An architectural expression of family, unity, and progress, standing as an enduring landmark of intergenerational identity.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u052" width="1500" height="844" alt="The DNA">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="residences-vishab" data-cat="residential" id="residences-vishab">
+      <div class="info">
+        <span class="closes num">017</span>
+        <div class="title-clip">
+          <a class="title-link" href="#residences-vishab"><h2 class="title-marquee">Residences Vishab</h2></a>
+          <h3 class="closes"><span class="city">El Salvador</span><span>2025</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Residences Vishab</span></div>
+            <div class="credit"><span>Location</span><span>El Salvador</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1253/705">
+          <img class="img-reveal" decoding="async" data-er="u053" width="1253" height="705" alt="Residences Vishab">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>A sustainable refuge that rises above the city, technology and greenery spiralling toward the view. Conceived as an extension of the existing building, the tower unfolds in cantilevered terraces that spiral upward, each one layered with vegetation that softens the boundary between structure and sky.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u054" width="1500" height="844" alt="Residences Vishab">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Passive cooling strategies and native planting reduce the building’s footprint while reinforcing its presence as a living organism within the urban fabric. From every level, the city slowly recedes and the horizon opens up, density resolved into open, breathing space.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u055" width="1500" height="844" alt="Residences Vishab">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="residences-embrace" data-cat="residential" id="residences-embrace">
+      <div class="info">
+        <span class="closes num">018</span>
+        <div class="title-clip">
+          <a class="title-link" href="#residences-embrace"><h2 class="title-marquee">Residences Embrace</h2></a>
+          <h3 class="closes"><span class="city">Dubai, UAE</span><span>2025</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Residences Embrace</span></div>
+            <div class="credit"><span>Location</span><span>Dubai, UAE</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1344/755">
+          <img class="img-reveal" decoding="async" data-er="u056" width="1344" height="755" alt="Residences Embrace">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Embrace expresses connection in distance. Two independent forms in perfect balance, separated yet deeply connected by a vertical space of light. This central void becomes a symbol of dialogue, growth, and mutual respect, reflecting Dubai’s character as a city where difference creates strength.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1329/704">
+            <img class="img-reveal" data-er="u057" width="1329" height="704" alt="Residences Embrace">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The two towers rise as mirrored volumes, their façades in quiet conversation across the gap that defines them. Rather than a divide, the void becomes an invitation, framing the open sky and drawing light into the space that finally unites them.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1217/683">
+            <img class="img-reveal" data-er="u058" width="1217" height="683" alt="Residences Embrace">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="residences-babylon" data-cat="residential" id="residences-babylon">
+      <div class="info">
+        <span class="closes num">019</span>
+        <div class="title-clip">
+          <a class="title-link" href="#residences-babylon"><h2 class="title-marquee">Residences Babylon</h2></a>
+          <h3 class="closes"><span class="city">El Salvador</span><span>2025</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Residences Babylon</span></div>
+            <div class="credit"><span>Location</span><span>El Salvador</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u059" width="1500" height="839" alt="Residences Babylon">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Babylon represents a new way of living: a vertical landscape where architecture, technology, and nature coexist. Layered like suspended gardens, the towers merge ingenuity and ecological design to create elevated worlds of greenery and light.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/844">
+            <img class="img-reveal" data-er="u060" width="1500" height="844" alt="Residences Babylon">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Terraces cascade upward in tiers, each one a threshold between structure and open sky, blurring the line between building and landscape, and allowing nature itself to ascend as a living, breathing ecosystem.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1280/720">
+            <img class="img-reveal" data-er="u061" width="1280" height="720" alt="Residences Babylon">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="libertador" data-cat="residential" id="libertador">
+      <div class="info">
+        <span class="closes num">020</span>
+        <div class="title-clip">
+          <a class="title-link" href="#libertador"><h2 class="title-marquee">Libertador</h2></a>
+          <h3 class="closes"><span class="city">Buenos Aires, Argentina</span><span>2024</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Libertador</span></div>
+            <div class="credit"><span>Location</span><span>Buenos Aires, Argentina</span></div>
+            <div class="credit"><span>Typology</span><span>Residential building</span></div>
+            <div class="credit"><span>Area</span><span>5,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Under construction</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/840">
+          <img class="img-reveal" decoding="async" data-er="u062" width="1500" height="840" alt="Libertador">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The residential building on Avenida del Libertador in Buenos Aires blends natural and architectural elements, reinterpreting Argentine brutalism in a contemporary and sustainable way. The façade, with integrated planters along balconies and windows, creates a green envelope that enhances both aesthetics and performance.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1500">
+            <img class="img-reveal" data-er="u063" width="1500" height="1500" alt="Libertador">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The brutalist foundation, with sharp geometric forms and raw materials, is softened by vegetation. The plants provide shade, privacy, and natural cooling, reducing energy use and reliance on air conditioning, while improving air quality and residents’ wellbeing.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="malinska" data-cat="hotel-resort" id="malinska">
+      <div class="info">
+        <span class="closes num">021</span>
+        <div class="title-clip">
+          <a class="title-link" href="#malinska"><h2 class="title-marquee">Malinska</h2></a>
+          <h3 class="closes"><span class="city">Malinska, Croatia</span><span>2020</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Malinska</span></div>
+            <div class="credit"><span>Location</span><span>Malinska, Croatia</span></div>
+            <div class="credit"><span>Typology</span><span>Resort masterplan</span></div>
+            <div class="credit"><span>Area</span><span>Landscape 250,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u064" width="1500" height="839" alt="Malinska">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Located in Malinska, the resort is conceived as a vibrant community that brings together leisure, wellness, culture, and nature. The complex includes gardens, sports facilities, retail, food and beverage spaces, and a medical center. Designed as a year-round destination, it combines architecture, landscape, and advanced health services to strengthen Malinska’s position within international tourism.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1233/1500">
+            <img class="img-reveal" data-er="u065" width="1233" height="1500" alt="Malinska">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The resort serves as an experiential hub, featuring workshops and an amphitheater for performances, music, and events. As Malinska’s first five-star resort, it offers luxury apartments with direct access to shared amenities. By combining hospitality, culture, and infrastructure, it aims to become a new reference point for Croatian tourism while supporting the growth of nearby communities.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/928">
+            <img class="img-reveal" data-er="u066" width="1500" height="928" alt="Malinska">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1058/1500">
+            <img class="img-reveal" data-er="u067" width="1058" height="1500" alt="Malinska">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="amar-porto-covo" data-cat="hotel-resort" id="amar-porto-covo">
+      <div class="info">
+        <span class="closes num">022</span>
+        <div class="title-clip">
+          <a class="title-link" href="#amar-porto-covo"><h2 class="title-marquee">Amar Porto Covo</h2></a>
+          <h3 class="closes"><span class="city">Porto Covo, Portugal</span><span>2021</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Amar Porto Covo</span></div>
+            <div class="credit"><span>Location</span><span>Porto Covo, Portugal</span></div>
+            <div class="credit"><span>Typology</span><span>Resort masterplan</span></div>
+            <div class="credit"><span>Area</span><span>49,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Processing building permit</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u068" width="1500" height="839" alt="Amar Porto Covo">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The project envisions an Epicurean boho-chic hotel that reinterprets traditional hospitality. Seamlessly integrated into the landscape, the design maintains strong visual coherence while reducing environmental impact. Efficiency, energy performance, and ecological awareness guide the architecture.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1071">
+            <img class="img-reveal" data-er="u069" width="1500" height="1071" alt="Amar Porto Covo">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Materials and construction methods follow sustainable principles and respect the local context. Where possible, the project uses local resources, including cork for finishes and structural elements, and rammed earth for the façade walls. These choices support local industries and help the building blend with its environment, while the landscape design responds to the relief, terrain, and natural character of the site.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u070" width="1059" height="1500" alt="Amar Porto Covo">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1070">
+            <img class="img-reveal" data-er="u071" width="1500" height="1070" alt="Amar Porto Covo">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="karakum-hotel" data-cat="mixed-use" id="karakum-hotel">
+      <div class="info">
+        <span class="closes num">023</span>
+        <div class="title-clip">
+          <a class="title-link" href="#karakum-hotel"><h2 class="title-marquee">Karakum Hotel</h2></a>
+          <h3 class="closes"><span class="city">Ashgabat, Turkmenistan</span><span>2018</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Karakum Hotel</span></div>
+            <div class="credit"><span>Location</span><span>Ashgabat, Turkmenistan</span></div>
+            <div class="credit"><span>Typology</span><span>Hotel masterplan</span></div>
+            <div class="credit"><span>Area</span><span>68,900 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/837">
+          <img class="img-reveal" decoding="async" data-er="u072" width="1500" height="837" alt="Karakum Hotel">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Karakum Mirage, near Ashgabat’s airport, is an architectural landmark inspired by the Karakum Desert. Its design echoes the undulating dunes and incorporates water and vegetation to create an urban oasis. Visible from all parts of the city, the project reshapes Ashgabat’s skyline.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/849">
+            <img class="img-reveal" data-er="u073" width="1500" height="849" alt="Karakum Hotel">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Using computational wind analysis, the building’s three masses are separated to promote natural ventilation. Contour lines around the structures provide thermal insulation, reducing heat gain while shielding the interiors from direct sunlight. The design blends desert aesthetics with environmental performance, establishing Karakum Mirage as a symbol of the city’s growth.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="aerospace-campus" data-cat="mixed-use" id="aerospace-campus">
+      <div class="info">
+        <span class="closes num">024</span>
+        <div class="title-clip">
+          <a class="title-link" href="#aerospace-campus"><h2 class="title-marquee">Aerospace Campus</h2></a>
+          <h3 class="closes"><span class="city">Toulouse, France</span><span>2008</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Aerospace Campus</span></div>
+            <div class="credit"><span>Location</span><span>Toulouse, France</span></div>
+            <div class="credit"><span>Typology</span><span>Hospitality, residence, offices and research facilities masterplan</span></div>
+            <div class="credit"><span>Area</span><span>193,700 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Collaboration</span><span>FOA</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1264/708">
+          <img class="img-reveal" decoding="async" data-er="u074" width="1264" height="708" alt="Aerospace Campus">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The Aerospace Campus is a redevelopment project for the Montaudran Aerodrome, designed to increase efficiency in the production, education, and research of the European aerospace industry. Located near the Rangueil Scientific Campus and Paul Sabatier University, the development includes office space, research facilities, leisure facilities, and retail.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u075" width="1059" height="1500" alt="Aerospace Campus">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Home to the Latécoère factory and the Aéropostale services, the Montaudran Aerodrome is closely associated with Antoine de Saint-Exupéry, one of the great pilots of the twentieth century.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/796">
+            <img class="img-reveal" data-er="u076" width="1500" height="796" alt="Aerospace Campus">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="jeddah-fashion-island" data-cat="mixed-use" id="jeddah-fashion-island">
+      <div class="info">
+        <span class="closes num">025</span>
+        <div class="title-clip">
+          <a class="title-link" href="#jeddah-fashion-island"><h2 class="title-marquee">Jeddah Fashion Island</h2></a>
+          <h3 class="closes"><span class="city">Jeddah, Saudi Arabia</span><span>2019</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Jeddah Fashion Island</span></div>
+            <div class="credit"><span>Location</span><span>Jeddah, Saudi Arabia</span></div>
+            <div class="credit"><span>Typology</span><span>Fashion &amp; commercial complex masterplan</span></div>
+            <div class="credit"><span>Area</span><span>50,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u077" width="1500" height="839" alt="Jeddah Fashion Island">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Set along Jeddah’s waterfront, Fashion Island embodies the harmony of permanence and motion, with a silhouette inspired by dunes and waves, reflecting the region’s heritage and fashion’s dynamic nature.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1234/1500">
+            <img class="img-reveal" data-er="u078" width="1234" height="1500" alt="Jeddah Fashion Island">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The island features expansive spaces for fashion shows, with sweeping arcs and adaptable canopies, hosting everything from grand runways to intimate couture showcases. Integrated retail zones surround them, while an F&amp;B promenade offers dining with waterfront views and an entertainment zone provides activities for all ages.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1058/1500">
+            <img class="img-reveal" data-er="u079" width="1058" height="1500" alt="Jeddah Fashion Island">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/846">
+            <img class="img-reveal" data-er="u080" width="1500" height="846" alt="Jeddah Fashion Island">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="jeddah-formula-1" data-cat="mixed-use" id="jeddah-formula-1">
+      <div class="info">
+        <span class="closes num">026</span>
+        <div class="title-clip">
+          <a class="title-link" href="#jeddah-formula-1"><h2 class="title-marquee">Jeddah Formula 1</h2></a>
+          <h3 class="closes"><span class="city">Jeddah, Saudi Arabia</span><span>2023</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Jeddah Formula 1</span></div>
+            <div class="credit"><span>Location</span><span>Jeddah, Saudi Arabia</span></div>
+            <div class="credit"><span>Typology</span><span>Formula 1 track masterplan</span></div>
+            <div class="credit"><span>Area</span><span>200,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Collaboration</span><span>Time Entertainment</span></div>
+            <div class="credit"><span>Status</span><span>Concept design</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u081" width="1500" height="839" alt="Jeddah Formula 1">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The project for the F1 Grand Prix in Jeddah features four villages, Main Village, Central Village, Sports Village, and Art Promenade, embodying the SAGP motto “Overtake the Future.” Each village has a distinct design and personality within a single immersive experience.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u082" width="1059" height="1500" alt="Jeddah Formula 1">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Visitors move between lounges, food courts, shopping areas, and thematic activations. Exhibition zones showcase technology, while giant inflatable sculptures scattered across the site act as visual landmarks, turning the event into a festival landscape that celebrates innovation, art, and entertainment.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/653">
+            <img class="img-reveal" data-er="u083" width="1500" height="653" alt="Jeddah Formula 1">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/843">
+            <img class="img-reveal" data-er="u084" width="1500" height="843" alt="Jeddah Formula 1">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="waves-festival" data-cat="mixed-use" id="waves-festival">
+      <div class="info">
+        <span class="closes num">027</span>
+        <div class="title-clip">
+          <a class="title-link" href="#waves-festival"><h2 class="title-marquee">Waves Festival</h2></a>
+          <h3 class="closes"><span class="city">Jeddah, Saudi Arabia</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Waves Festival</span></div>
+            <div class="credit"><span>Location</span><span>Jeddah, Saudi Arabia</span></div>
+            <div class="credit"><span>Typology</span><span>Urban trail</span></div>
+            <div class="credit"><span>Area</span><span>100,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Collaboration</span><span>Time Entertainment</span></div>
+            <div class="credit"><span>Status</span><span>Concept design</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u085" width="1500" height="839" alt="Waves Festival">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The Waves festival celebrates Jeddah’s coastal spirit across three zones: Aquatica, Legends of the Sea, and Urban Beach. Aquatica offers a 1 km floating trail with 10 multimedia worlds and large-scale installations exploring the connection between humanity, land, and sea. Legends of the Sea presents a water-fountain show inspired by Arabian folktales.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u086" width="1059" height="1500" alt="Waves Festival">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Urban Beach spans a vast coastal area with the Red Sea as its backdrop, hosting seven activity zones for up to 20,000 visitors. Designed for seamless crowd flow, it transitions from daytime activities into nighttime light displays, uniting people through the vitality of Jeddah’s shores.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/855">
+            <img class="img-reveal" data-er="u087" width="1500" height="855" alt="Waves Festival">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="magok-lake-park" data-cat="mixed-use" id="magok-lake-park">
+      <div class="info">
+        <span class="closes num">028</span>
+        <div class="title-clip">
+          <a class="title-link" href="#magok-lake-park"><h2 class="title-marquee">Magok Lake Park</h2></a>
+          <h3 class="closes"><span class="city">Seoul, South Korea</span><span>2008</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Magok Lake Park</span></div>
+            <div class="credit"><span>Location</span><span>Seoul, South Korea</span></div>
+            <div class="credit"><span>Area</span><span>1,170,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u088" width="1500" height="839" alt="Magok Lake Park">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Magok Waterfront blends nature and artificiality to create a sustainable space of coexistence. Part of the Han River Renaissance Project, it redefines Magok’s identity through waterscapes, transport, and eco-formations, integrating water terracing, expansive wetlands, and recreational amenities.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1058/1500">
+            <img class="img-reveal" data-er="u089" width="1058" height="1500" alt="Magok Lake Park">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>A river barrage transforms the bay into freshwater, with sluice gates, fish passes, and flood defenses. Wetlands along the lake edges serve as ecological buffers and transition zones, while oxygenation, salinity control, and debris removal manage water quality, harmonizing ecology, infrastructure, and recreation.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1006">
+            <img class="img-reveal" data-er="u090" width="1500" height="1006" alt="Magok Lake Park">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="cementerio-vespella" data-cat="mixed-use" id="cementerio-vespella">
+      <div class="info">
+        <span class="closes num">029</span>
+        <div class="title-clip">
+          <a class="title-link" href="#cementerio-vespella"><h2 class="title-marquee">Cementerio Vespella de Gaià</h2></a>
+          <h3 class="closes"><span class="city">Vespella de Gaià, Spain</span><span>2007</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Cementerio Vespella de Gaià</span></div>
+            <div class="credit"><span>Location</span><span>Vespella de Gaià, Spain</span></div>
+            <div class="credit"><span>Area</span><span>50,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal, awarded</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u091" width="1500" height="839" alt="Cementerio Vespella de Gaià">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Every culture develops its own responses to death, defining rituals of reverence and methods of preservation. Ancestral Etruscan practices echo in the approach: tombs were seen as the dwellings of the dead, built as cylindrical structures integrated with the landscape.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1059/1500">
+            <img class="img-reveal" data-er="u092" width="1059" height="1500" alt="Cementerio Vespella de Gaià">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>Natural light is the key element: light from above symbolizes the connection between life and the afterlife and functions as a natural clock, as in Rome’s Pantheon. The proposal combines crater-type tombs, intimate lower-level spaces where only the sky is visible, with built micropantheons resembling small tholoi or funerary amphoras for family tombs, and a cemetery church that completes a contemplative landscape.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="juzgados-penal" data-cat="mixed-use" id="juzgados-penal">
+      <div class="info">
+        <span class="closes num">030</span>
+        <div class="title-clip">
+          <a class="title-link" href="#juzgados-penal"><h2 class="title-marquee">Juzgados Penal</h2></a>
+          <h3 class="closes"><span class="city">Madrid, Spain</span><span>2007</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Juzgados Penal</span></div>
+            <div class="credit"><span>Location</span><span>Madrid, Spain</span></div>
+            <div class="credit"><span>Area</span><span>28,000 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u093" width="1500" height="839" alt="Juzgados Penal">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>The Criminal Court Building in Madrid’s Justice Campus is defined by its circular geometry, symbolizing fairness and equality. Its cylindrical form, with softened edges, conveys monumentality through simplicity. Precast concrete ensures neutrality and cohesion, while a double-skin façade adds flexibility without disrupting the serene exterior.</p></div>
+        <div class="slide-text"><p>The base deforms slightly to create a welcoming, democratic entrance. Internally, concentric rings organize circulation, ensuring efficient movement between public and restricted areas while maintaining clear orientation.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="escalera-mirador-vela" data-cat="public-space" id="escalera-mirador-vela">
+      <div class="info">
+        <span class="closes num">031</span>
+        <div class="title-clip">
+          <a class="title-link" href="#escalera-mirador-vela"><h2 class="title-marquee">Escalera y Mirador Vela</h2></a>
+          <h3 class="closes"><span class="city">Barcelona, Spain</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Escalera y Mirador Vela</span></div>
+            <div class="credit"><span>Client</span><span>Nova Bocana</span></div>
+            <div class="credit"><span>Location</span><span>Barcelona, Spain</span></div>
+            <div class="credit"><span>Typology</span><span>Urban design</span></div>
+            <div class="credit"><span>Area</span><span>800 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Engineering</span><span>PIGRA</span></div>
+            <div class="credit"><span>Status</span><span>Built</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/839">
+          <img class="img-reveal" decoding="async" data-er="u094" width="1500" height="839" alt="Escalera y Mirador Vela">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Located along Barcelona’s waterfront near the W Hotel, the project introduces a sculptural staircase and elevated walkway that connect two levels of the promenade. Inspired by Mediterranean salt crystal formations, the intervention creates a new façade and public balcony that extends the promenade toward the sea while framing views of the coastline and city.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1052/1500">
+            <img class="img-reveal" data-er="u095" width="1052" height="1500" alt="Escalera y Mirador Vela">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>The intervention uses the existing seawall as both support and context, turning a former dead end into an urban connection. Its prefabricated reinforced concrete structure includes a 48-step stairway and an elevated walkway, clad with triangular bio-receptive panels developed through parametric design. The panels embed native plants such as Lobularia maritima, Lampranthus spectabilis, and Drosanthemum floribundum. A fiber optic lighting system activates the façade at sunset.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1056/1500">
+            <img class="img-reveal" data-er="u096" width="1056" height="1500" alt="Escalera y Mirador Vela">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/1064">
+            <img class="img-reveal" data-er="u097" width="1500" height="1064" alt="Escalera y Mirador Vela">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="whispers-of-the-sea" data-cat="public-space" id="whispers-of-the-sea">
+      <div class="info">
+        <span class="closes num">032</span>
+        <div class="title-clip">
+          <a class="title-link" href="#whispers-of-the-sea"><h2 class="title-marquee">Whispers of the Sea</h2></a>
+          <h3 class="closes"><span class="city">Jeddah, Saudi Arabia</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Whispers of the Sea</span></div>
+            <div class="credit"><span>Location</span><span>Jeddah, Saudi Arabia</span></div>
+            <div class="credit"><span>Typology</span><span>Urban art installation in public space</span></div>
+            <div class="credit"><span>Area</span><span>1,330 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Collaboration</span><span>Time Entertainment</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/840">
+          <img class="img-reveal" decoding="async" data-er="u098" width="1500" height="840" alt="Whispers of the Sea">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Like a wave of art flooding the streets, Whispers of the Sea explores the city’s past through traditional folktales, as if told by the grandmothers of Jeddah in whispers coming from the sea. The trail is designed for adults, families, and children, with a total length of approximately 1,330 m.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/869">
+            <img class="img-reveal" data-er="u099" width="1500" height="869" alt="Whispers of the Sea">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>It includes 11 pitstops across Al Balad, with 6 main stops hosting projections and interactive experiences. Physical installations offer glimpses during the day, and a multimedia approach culminates in the experience at night, with dedicated audio echoing the voices that recount local tales.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+    <article class="project" data-slug="street-waves" data-cat="public-space" id="street-waves">
+      <div class="info">
+        <span class="closes num">033</span>
+        <div class="title-clip">
+          <a class="title-link" href="#street-waves"><h2 class="title-marquee">Street Waves</h2></a>
+          <h3 class="closes"><span class="city">Jeddah, Saudi Arabia</span><span>2022</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="slide-credits">
+          <div class="credits-inner">
+            <div class="credit"><span>Project</span><span>Street Waves</span></div>
+            <div class="credit"><span>Location</span><span>Jeddah, Saudi Arabia</span></div>
+            <div class="credit"><span>Typology</span><span>Urban trail</span></div>
+            <div class="credit"><span>Area</span><span>5,300 m²</span></div>
+            <div class="credit"><span>Author</span><span>External Reference</span></div>
+            <div class="credit"><span>Collaboration</span><span>Time Entertainment</span></div>
+            <div class="credit"><span>Status</span><span>Concept design proposal</span></div>
+          </div>
+          <div class="credits-fade"></div>
+        </div>
+        <picture class="picture-featured" style="--ar:1500/833">
+          <img class="img-reveal" decoding="async" data-er="u100" width="1500" height="833" alt="Street Waves">
+          <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </picture>
+        <div class="slide-text"><p>Street Waves brings urban art installations to Jeddah’s pedestrian areas, embodying the city’s coastal spirit. The pieces simulate wave motion through 3D printing techniques, releasing gentle sprays of water to refresh passersby.</p></div>
+        <figure class="slide-image">
+          <picture style="aspect-ratio:1500/790">
+            <img class="img-reveal" data-er="u101" width="1500" height="790" alt="Street Waves">
+            <span class="add-icon" aria-label="Enlarge"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0 V10 M0 5 H10" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </picture>
+        </figure>
+        <div class="slide-text"><p>At night, the installations become multimedia displays, with video projections on mist curtains and augmented reality components. They also host the city-wide Augmented Reality Art exhibit, connecting Jeddah’s art community with residents and visitors.</p></div>
+      </div>
+      <div class="navigator">
+        <button type="button" class="arrow prev" aria-label="Previous"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 1 L1 8 L8.5 15 M1 8 H17.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button type="button" class="next">Next Project</button>
+        <button type="button" class="arrow nxt" aria-label="Next"><svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1 L17 8 L9.5 15 M17 8 H0.5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </article>
+  </div>
+
+  <div class="reader" id="reader" role="dialog" aria-label="Image">
+    <button type="button" class="reader-close">Close</button>
+    <img alt="">
+  </div>
+
+  <footer>
+    <a class="footer-logo" href="index.html"><svg class="" viewBox="0 0 841.924194 292.308044" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="External Reference" fill="currentColor"><g> <g> <polygon points="77.662476 114.060181 17.655457 114.060181 17.655457 74.958191 72.076477 74.958191 72.076477 58.383179 17.655457 58.383179 17.655457 19.101196 77.662476 19.101196 77.662476 2.704163 .000488 2.704163 .000488 130.456177 77.662476 130.456177 77.662476 114.060181"/> <path d="M110.487183,130.456848l21.982971-31.890991,22.341003,31.890991h20.359985c-5.221985-7.028992-26.669983-37.117004-31.890991-44.145996l30.809998-42.521973h-20.001953l-20.89502,30.449951-21.268982-30.449951h-20.538025l31.167969,42.521973-32.247986,44.145996h20.18103Z"/> <path d="M198.079956,106.670959c0,15.677002,9.371033,24.687012,24.143005,24.687012,5.767029,0,10.095032-1.080017,11.531982-1.624023v-14.414001c-1.436951.361023-4.505981.722046-6.667969.722046-8.827026,0-12.067017-3.963013-12.067017-11.893005v-45.044006h18.734985v-15.31604h-18.734985v-27.387939h-15.494995v14.053955c0,7.567993-3.971008,13.333984-13.335022,13.333984h-4.685974v15.31604h16.575989v47.565979Z"/> <path d="M291.973938,133.161743c20.18103,0,34.059998-12.075989,38.924011-27.388977l-14.601013-5.046997c-3.240967,9.729004-10.264954,17.47699-24.322998,17.47699-14.593994,0-25.766968-10.809021-26.125-26.304993h65.228027c.179016-1.080017.357971-3.244019.357971-5.40802,0-27.026978-14.950989-45.404968-41.620972-45.404968-21.804993,0-41.440979,18.560974-41.440979,45.765991,0,29.369995,20.359009,46.310974,43.600952,46.310974ZM289.992981,56.039734c15.315979,0,23.420959,9.729004,23.786011,22.162048h-47.394043c.723022-11.170044,9.371033-22.162048,23.608032-22.162048Z"/> <path d="M370.024902,87.033142c0-19.099976,9.549988-26.668945,23.777954-26.668945,2.347046,0,4.865051.178955,7.390015.539978v-18.017029c-.901001-.182007-3.23999-.539978-5.586975-.539978-8.827026,0-19.637024,3.241028-25.945984,16.575989v-15.133972h-16.575012v86.667969h16.940002v-43.424011Z"/> <path d="M436.169373,80.365845c0-13.156006,6.847046-23.786011,20.182007-23.786011,15.130005,0,20.179993,9.729004,20.179993,21.805054v52.07196h16.932007v-54.955017c0-19.278992-10.265015-34.237976-30.989014-34.237976-10.086975,0-20.359985,4.14502-26.669983,14.958984v-12.43396h-16.575012v86.667969h16.940002v-50.091003Z"/> <path d="M572.059265,118.746033c0,6.30603.534973,9.551025.900024,11.710999h16.575989c-.36499-2.159973-1.080017-6.666992-1.080017-14.235962v-43.423035c0-16.936951-10.094971-31.712952-36.041016-31.712952-18.735962,0-33.695007,11.531006-35.497986,28.106995l16.21698,3.783997c1.082031-10.091003,7.748047-17.47699,19.647034-17.47699,13.145996,0,18.734009,7.028992,18.734009,15.494995,0,3.065979-1.437988,5.765991-6.66803,6.488953l-23.419983,3.423035c-14.958984,2.161011-26.312012,10.809998-26.312012,26.309021,0,13.690979,11.353027,25.945984,29.015015,25.945984,15.495972,0,24.14502-8.291016,27.929993-14.415039ZM532.410278,106.313049c0-7.747009,5.411011-11.893005,12.620972-12.972961l26.483032-3.968018v3.968018c0,18.917969-11.174011,25.584961-25.044983,25.584961-8.64801,0-14.059021-6.127014-14.059021-12.612Z"/> <rect x="614.78949" width="16.942017" height="130.455933"/> <path d="M87.212952,199.869446c0-21.08197-14.958984-38.018005-39.102966-38.018005H0v127.752014h17.833984v-52.255005h19.10199l29.19397,52.255005h20.539001l-30.453979-53.513977c19.279968-3.605042,30.997986-17.838013,30.997986-36.220032ZM44.869934,221.492432h-27.03595v-43.784973h27.03595c14.415039,0,24.143005,8.648987,24.143005,22.161987,0,13.156982-9.727966,21.622986-24.143005,21.622986Z"/> <path d="M140.575684,200.23175c-21.80603,0-41.442017,18.559998-41.442017,45.765991,0,29.369995,20.359009,46.309998,43.60199,46.309998,20.18103,0,34.052002-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.768005-10.809021-26.125977-26.304016h65.229004c.177979-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.619995-45.403992ZM117.14563,237.348755c.723022-11.171021,9.372009-22.161987,23.609009-22.161987,15.315002,0,23.421021,9.729004,23.786011,22.161987h-47.39502Z"/> <path d="M209.067261,188.337769v14.597961h-16.031982v15.31604h16.031982v71.35199h17.484009v-71.35199h20.895996v-15.31604h-20.895996v-13.695984c0-11.893982,7.747986-14.776978,13.692017-14.776978,4.32196,0,6.48999.722961,7.390991,1.083984v-15.136963c-.723022-.540039-4.329041-1.80304-10.095032-1.80304-15.674011,0-28.471985,10.452026-28.471985,29.731018Z"/> <path d="M296.480896,200.23175c-21.804993,0-41.44104,18.559998-41.44104,45.765991,0,29.369995,20.359009,46.309998,43.60199,46.309998,20.18103,0,34.059998-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.767944-10.809021-26.125977-26.304016h65.229004c.177979-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.620972-45.403992ZM273.05188,237.348755c.723022-11.171021,9.372009-22.161987,23.607971-22.161987,15.31604,0,23.421997,9.729004,23.787048,22.161987h-47.39502Z"/> <path d="M376.326904,218.069641v-15.133972h-16.575012v86.667969h16.940002v-43.424011c0-19.099976,9.550964-26.668945,23.778015-26.668945,2.347961,0,4.865967.178955,7.390991.539978v-18.017029c-.901001-.181946-3.23999-.539978-5.587036-.539978-8.828003,0-19.638,3.241028-25.94696,16.575989Z"/> <path d="M459.412598,200.23175c-21.805054,0-41.442017,18.559998-41.442017,45.765991,0,29.369995,20.359985,46.309998,43.60199,46.309998,20.180969,0,34.051025-12.075989,38.924011-27.388l-14.60199-5.046997c-3.240051,9.729004-10.264038,17.476013-24.322021,17.476013-14.593994,0-25.768005-10.809021-26.125977-26.304016h65.22998c.177002-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.952026-45.403992-41.620972-45.403992ZM435.982544,237.348755c.723022-11.171021,9.372009-22.161987,23.609009-22.161987,15.31604,0,23.421021,9.729004,23.786011,22.161987h-47.39502Z"/> <path d="M565.926453,200.409851c-10.093994,0-20.359985,4.145996-26.667969,14.958984v-12.432983h-16.575989v86.66803h16.940979v-50.091003c0-13.156006,6.846008-23.786011,20.179993-23.786011,15.130981,0,20.18103,9.729004,20.18103,21.803955v52.073059h16.932007v-54.956055c0-19.278992-10.264038-34.237976-30.990051-34.237976Z"/> <path d="M660.552917,276.630066c-14.057983,0-26.484009-10.630005-26.484009-30.450012,0-20.180969,12.612976-30.270996,26.304993-30.270996,14.77301,0,21.082031,9.90802,23.242004,18.377991l15.315979-6.489014c-3.60498-13.151978-15.493958-27.566956-38.557983-27.566956-24.687988,0-43.60199,18.917969-43.60199,45.948975,0,26.304993,18.557007,46.127991,43.781006,46.127991,22.52002,0,34.953979-14.597961,39.10199-27.031006l-14.958984-6.484985c-1.981018,6.846008-7.926025,17.838013-24.143005,17.838013Z"/> <path d="M753.018127,200.23175c-21.804993,0-41.44104,18.559998-41.44104,45.765991,0,29.369995,20.359009,46.309998,43.601013,46.309998,20.179993,0,34.059021-12.075989,38.924011-27.388l-14.60199-5.046997c-3.23999,9.729004-10.265015,17.476013-24.322021,17.476013-14.593994,0-25.766968-10.809021-26.125-26.304016h65.229004c.177002-1.079956.356995-3.243958.356995-5.408997,0-27.026978-14.950989-45.403992-41.620972-45.403992ZM729.588135,237.348755c.722961-11.171021,9.370972-22.161987,23.607971-22.161987,15.315979,0,23.421997,9.729004,23.786987,22.161987h-47.394958Z"/> <path d="M821.471191,172.209839c-11.252014,0-20.281006,9.251038-20.281006,20.565002,0,11.315002,9.028992,20.619995,20.281006,20.619995,11.314026,0,20.453003-9.304993,20.453003-20.619995,0-11.313965-9.138977-20.565002-20.453003-20.565002Z"/> </g> </g></svg></a>
+    <div class="footer-info">
+      <ul>
+        <li><a href="https://www.google.com/maps/place/External+Reference/@41.3954701,2.1639013,17z" target="_blank" rel="noopener">C/ de València, 287, Ppal., 1º
+08009 Barcelona</a></li>
+        <li><a href="tel:+34646514838">T. +34 646 514 838</a></li>
+        <li><a href="mailto:studio@externalreference.com">studio@externalreference.com</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.google.com/maps/place/The+Bayswater+by+Omniyat/@25.1842958,55.2611554,17z" target="_blank" rel="noopener">Bayswater Tower 707,
+Business Bay, Dubai</a></li>
+        <li><a href="tel:+9710585245426">T. +971 058 524 5426</a></li>
+        <li><a href="mailto:studiodubai@externalreference.com">studiodubai@externalreference.com</a></li>
+      </ul>
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="https://externalreference.com/studio/" target="_blank" rel="noopener">Studio</a></li>
+        <li><a href="https://externalreference.com/services/" target="_blank" rel="noopener">Services</a></li>
+        <li><a href="https://externalreference.com/news/" target="_blank" rel="noopener">News</a></li>
+        <li><a href="https://externalreference.com/external-research-lab/" target="_blank" rel="noopener">External Research Lab</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.instagram.com/externalreference/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/external-reference/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.tiktok.com/@externalreference" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@externalreference/featured" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://www.facebook.com/Externalreference/" target="_blank" rel="noopener">Facebook</a></li>
+      </ul>
+      <div class="copy">© 2026 External Reference. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Loader: percentuale reale di immagini caricate
+    (function () {
+      const loader = document.getElementById('site-loader');
+      const label = loader.querySelector('span');
+      const imgs = [...document.querySelectorAll('img[data-critical]')];
+      let done = 0;
+      const tick = () => {
+        const pct = imgs.length ? Math.round((done / imgs.length) * 100) : 100;
+        label.textContent = pct + '%';
+        if (done >= imgs.length) setTimeout(() => loader.classList.add('is-ready'), 150);
+      };
+      imgs.forEach(img => {
+        if (img.complete) { done++; return; }
+        img.addEventListener('load', () => { done++; tick(); }, { once: true });
+        img.addEventListener('error', () => { done++; tick(); }, { once: true });
+      });
+      tick();
+      setTimeout(() => loader.classList.add('is-ready'), 4000);
+    })();
+
+    // Comparsa morbida delle immagini
+    document.querySelectorAll('img.img-reveal').forEach(img => {
+      const show = () => img.classList.add('is-revealed');
+      if (img.complete) show(); else img.addEventListener('load', show, { once: true });
+    });
+
+    // Menu
+    const burger = document.getElementById('burger');
+    burger.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded', open);
+    });
+    document.querySelectorAll('.menu-panel a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+    const CATS = {"residential": "Residential", "hotel-resort": "Hotel & Resort", "mixed-use": "Mixed Use", "public-space": "Public Space"};
+    const mq = window.matchMedia('(max-width: 767px)');
+    const pool = [...document.querySelectorAll('#pool .project')];
+    const cols = [document.querySelector('.col--1')];
+    const inners = cols.map(c => c.querySelector('.col-inner'));
+    const catBtns = [document.querySelector('.cat-btn--1')];
+    const lists = [document.querySelector('.cat-list--1')];
+    const state = { cats: ['all'], active: null };
+    CATS.all = 'All';
+
+    function render(i) {
+      const cat = state.cats[i];
+      inners[i].replaceChildren(...pool.filter(a => cat === 'all' || a.dataset.cat === cat));
+      catBtns[i].textContent = CATS[cat];
+      cols[i].scrollTop = 0;
+      lists.forEach((l, j) => l.querySelectorAll('button').forEach(b => {
+        b.classList.toggle('is-current', b.dataset.cat === state.cats[j]);
+
+      }));
+    }
+
+    // Selettori di categoria nell'header
+    const setSlot = () => document.querySelector('header').style.setProperty('--slot-left', document.getElementById('catSlot').getBoundingClientRect().left + 'px');
+    setSlot(); window.addEventListener('resize', setSlot); document.fonts && document.fonts.ready.then(setSlot);
+    catBtns.forEach((btn, i) => btn.addEventListener('click', () => { lists[i].classList.add('is-open'); checkEnd(lists[i]); }));
+    lists.forEach((list, i) => {
+      list.querySelector('.cat-close').addEventListener('click', () => list.classList.remove('is-open'));
+      list.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        state.cats[i] = b.dataset.cat;
+        render(i);
+        list.classList.remove('is-open');
+      }));
+      list.querySelector('.cats-scroll').addEventListener('scroll', () => checkEnd(list));
+    });
+    function checkEnd(list) {
+      const s = list.querySelector('.cats-scroll');
+      list.classList.toggle('at-end', s.scrollLeft + s.clientWidth >= s.scrollWidth - 2);
+    }
+
+    // Titoli lunghi: scorrono al passaggio del mouse
+    pool.forEach(a => {
+      const clip = a.querySelector('.title-clip'), t = a.querySelector('.title-marquee');
+      a.addEventListener('mouseenter', () => {
+        if (a.classList.contains('active') || mq.matches) return;
+        const d = t.scrollWidth - (clip.clientWidth - 35);
+        if (d > 0) { t.style.transition = `transform ${d * 25}ms linear`; t.style.transform = `translateX(${-d}px)`; }
+      });
+      a.addEventListener('mouseleave', () => { t.style.transition = 'transform .4s ease'; t.style.transform = ''; });
+    });
+
+    // Apertura e chiusura del progetto
+    function open(a, instant) {
+      const i = cols.findIndex(c => c.contains(a));
+      if (i < 0) return;
+      if (state.active) close(true);
+      if (instant) document.body.classList.add('no-anim');
+      state.active = a;
+      a.querySelector('.title-marquee').style.transform = '';
+      cols[i].classList.add('open');
+
+      a.classList.add('active');
+      document.body.classList.add('project-open');
+      history.replaceState(null, '', '#' + a.dataset.slug);
+      requestAnimationFrame(() => {
+        if (mq.matches) window.scrollTo({ top: a.offsetTop - 60 + (document.querySelector('.projects-grid').offsetTop - 60) });
+        else cols[i].scrollTop = a.offsetTop;
+        const row = a.querySelector('.row'); row.scrollLeft = 0; updateArrows(a);
+        const cr = a.querySelector('.slide-credits'); cr.classList.toggle('faded', cr.scrollHeight > cr.clientHeight + 2);
+        if (instant) requestAnimationFrame(() => document.body.classList.remove('no-anim'));
+      });
+      // dopo l'animazione di apertura riallineo la striscia: le immagini restano intere in verticale
+      setTimeout(() => { if (state.active === a && !mq.matches) cols[i].scrollTop = a.offsetTop; }, 600);
+    }
+    function close(silent) {
+      const a = state.active;
+      if (!a) return;
+      cols.forEach(c => c.classList.remove('open', 'closed'));
+      a.classList.remove('active');
+      a.querySelector('.row').classList.remove('scrolled');
+      document.body.classList.remove('project-open');
+      state.active = null;
+      if (!silent) {
+        history.replaceState(null, '', location.pathname);
+        const i = cols.findIndex(c => c.contains(a));
+        requestAnimationFrame(() => {
+          if (mq.matches) window.scrollTo({ top: a.offsetTop });
+          else cols[i].scrollTop = Math.max(0, a.offsetTop - 60);
+        });
+      }
+    }
+
+    let dragMoved = false;
+    pool.forEach(a => {
+      a.addEventListener('click', e => {
+        if (dragMoved) { dragMoved = false; return; }
+        if (e.target.closest('.title-link')) e.preventDefault();
+        if (!a.classList.contains('active')) { open(a); return; }
+        if (e.target.closest('.info .closes')) { close(); return; }
+        const pic = e.target.closest('picture');
+        if (pic) openReader(pic.querySelector('img').src);
+      });
+
+      // Frecce e progetto successivo
+      const row = a.querySelector('.row');
+      a.querySelector('.prev').addEventListener('click', e => { e.stopPropagation(); step(a, -1); });
+      a.querySelector('.nxt').addEventListener('click', e => { e.stopPropagation(); step(a, 1); });
+      a.querySelector('.next').addEventListener('click', e => {
+        e.stopPropagation();
+        const list = [...a.parentElement.children];
+        const n = list[(list.indexOf(a) + 1) % list.length];
+        open(n, true);
+      });
+      row.addEventListener('scroll', () => { updateArrows(a); row.classList.toggle('scrolled', row.scrollLeft > 20 && !mq.matches); });
+
+      // Trascinamento e rotella in orizzontale
+      let down = false, sx = 0, sl = 0;
+      row.addEventListener('pointerdown', e => {
+        if (!a.classList.contains('active') || mq.matches || e.pointerType !== 'mouse') return;
+        down = true; dragMoved = false; sx = e.clientX; sl = row.scrollLeft;
+      });
+      window.addEventListener('pointermove', e => {
+        if (!down) return;
+        const dx = e.clientX - sx;
+        if (Math.abs(dx) > 4) { dragMoved = true; row.classList.add('dragging'); }
+        row.scrollLeft = sl - dx;
+      });
+      window.addEventListener('pointerup', () => { down = false; row.classList.remove('dragging'); });
+      row.addEventListener('wheel', e => {
+        if (!a.classList.contains('active') || mq.matches) return;
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); row.scrollLeft += e.deltaY; }
+      }, { passive: false });
+    });
+
+    function step(a, dir) {
+      const row = a.querySelector('.row');
+      row.scrollBy({ left: dir * row.clientWidth * 0.6, behavior: 'smooth' });
+    }
+    function updateArrows(a) {
+      const row = a.querySelector('.row');
+      a.querySelector('.prev').disabled = row.scrollLeft <= 2;
+      a.querySelector('.nxt').disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 2;
+    }
+
+
+    // con un progetto aperto la colonna non deve scorrere in verticale (eviterebbe di tagliare le immagini)
+    cols.forEach(c => c.addEventListener('scroll', () => {
+      const a = state.active;
+      if (a && c.classList.contains('open') && !mq.matches && c.contains(a) && c.scrollTop !== a.offsetTop) c.scrollTop = a.offsetTop;
+    }));
+    addEventListener('resize', () => { const a = state.active; if (a && !mq.matches) { const c = cols.find(c => c.contains(a)); if (c) c.scrollTop = a.offsetTop; } });
+    document.querySelector('.back-btn').addEventListener('click', () => close());
+
+    // Visualizzatore immagine
+    const reader = document.getElementById('reader');
+    function openReader(src) { reader.querySelector('img').src = src; reader.classList.add('is-open'); }
+    reader.addEventListener('click', () => reader.classList.remove('is-open'));
+
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (reader.classList.contains('is-open')) reader.classList.remove('is-open');
+      else if (document.body.classList.contains('menu-open')) document.body.classList.remove('menu-open');
+      else if (lists.some(l => l.classList.contains('is-open'))) lists.forEach(l => l.classList.remove('is-open'));
+      else close();
+    });
+
+    // Avvio: apre direttamente un progetto se l'indirizzo lo indica
+    render(0);
+    const start = pool.find(a => a.dataset.slug === location.hash.slice(1));
+    if (start) {
+      if (state.cats[0] !== 'all' && state.cats[0] !== start.dataset.cat) { state.cats[0] = 'all'; render(0); }
+      open(start, true);
+    }
+    mq.addEventListener('change', () => { close(true); render(0); });
+
+  </script>
+<script src="urban-images-1.js"></script><script src="urban-images-2.js"></script><script src="urban-images-3.js"></script><script src="urban-images-4.js"></script><script src="urban-images-5.js"></script><script>
+(function(){var M=window.ERIMG||{};document.querySelectorAll('img[data-er]').forEach(function(i){var u=M[i.getAttribute('data-er')];if(u){i.addEventListener('load',function(){i.classList.add('is-revealed')},{once:true});i.src=u;}});})();
+</script>
+</body>
+</html>
