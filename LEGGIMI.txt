@@ -1,0 +1,16 @@
+PORTFOLIO EXTERNAL REFERENCE - COME PUBBLICARLO SU GITHUB
+NON caricare lo zip su GitHub: estrailo e carica i file che contiene.
+
+Ogni file pesa meno di 4 MB, quindi GitHub li accetta tutti dal browser.
+Le foto di Urban & Architecture e Interior sono nei file urban-images-*.js e interior-images-*.js:
+devono stare nella stessa cartella dei file .html (la cartella principale del repository).
+
+1. Estrai lo zip (Windows: clic destro > Estrai tutto. Mac: doppio clic).
+2. Su GitHub: repository del sito > Add file > Upload files.
+3. Primo caricamento: tutti i file .html  > Commit changes.
+4. Secondo caricamento: urban-images-1.js ... urban-images-5.js  > Commit changes.
+5. Terzo caricamento: interior-images-1.js ... interior-images-6.js  > Commit changes.
+6. Attendi 1-2 minuti e ricarica il sito (Ctrl+F5 su Windows, Cmd+Shift+R su Mac).
+
+Se un caricamento fallisce, riprova caricando un solo file alla volta.
+La cartella "images", se presente nel repository, non serve più e si può eliminare.
