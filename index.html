@@ -69,10 +69,16 @@ img { display: block; }
 
 /* ================= Tipi di schermata ================= */
 .fig { margin: 0; min-height: 0; min-width: 0; display: flex; flex-direction: column; }
-.fig .ph { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.fig { position: relative; }
+.fig .ph { flex: 1; min-height: 0; display: flex; align-items: flex-start; justify-content: flex-start; }
+.fig.has-cap .ph { padding-bottom: 3.6rem; }
 .fig img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; opacity: 0; transition: opacity .4s ease; }
 .fig img.is-ready { opacity: 1; }
-.fig figcaption { flex: none; margin-top: .8rem; color: var(--grey); line-height: 1.35; }
+.fig figcaption { position: absolute; left: 0; top: 0; color: var(--grey); line-height: 1.35; visibility: hidden; }
+.fig figcaption.is-placed { visibility: visible; }
+.col-txt { display: flex; flex-direction: column; min-height: 0; }
+.col-txt .txt { flex: 1; }
+.h.is-spacer { visibility: hidden; }
 .txt { font-family: var(--body); font-size: 1.3rem; line-height: 1.55; color: var(--black); overflow-y: auto; min-height: 0; padding-right: .8rem; scrollbar-width: thin; scrollbar-color: var(--light) transparent; }
 .txt p + p, .txt ul + p, .txt p + ul, .txt div + p { margin-top: 1em; }
 .txt b { font-weight: 700; }
@@ -195,6 +201,9 @@ img { display: block; }
   .split .fig, .quote .fig, .intro .fig, .intro .gal { order: -1; }
   .gal { overflow: visible; padding-right: 0; grid-template-columns: 1fr; }
   .fig .ph { flex: none; }
+  .fig.has-cap .ph { padding-bottom: 0; }
+  .fig figcaption { position: static; visibility: visible; margin-top: .8rem; width: auto !important; }
+  .h.is-spacer { display: none; }
   .fig img { max-height: none; width: 100%; }
   .single .fig img { max-height: 100%; width: auto; }
   .txt { overflow: visible; padding-right: 0; font-size: 1.4rem; }
@@ -222,7 +231,6 @@ img { display: block; }
       <button class="side-close" id="sideClose" type="button" aria-label="Close index">Close</button>
     </div>
     <div class="now" aria-live="polite">
-      <div class="now-label">Now viewing</div>
       <div class="now-section" id="nowSection"></div>
       <div class="now-item" id="nowItem"></div>
       <div class="now-count" id="nowCount"></div>
@@ -283,7 +291,7 @@ const DATA = {"slides": [{"id": "home", "kind": "cover", "title": "We transform 
       if (u) {
         if (!img.src) {
           img.onload = () => {
-            img.classList.add('is-ready');
+            img.classList.add('is-ready'); placeCaps(img.closest('.slide'));
             const card = img.closest('.cover-card'); if (card) card.style.flexGrow = (img.naturalWidth / img.naturalHeight).toFixed(3);
           };
           img.src = u;
@@ -298,13 +306,27 @@ const DATA = {"slides": [{"id": "home", "kind": "cover", "title": "We transform 
     });
   }
   const im = (k, alt) => k ? `<img data-k="${k}" alt="${esc(alt || 'External Reference')}">` : '';
-  const fig = (k, cap, alt) => `<figure class="fig"><div class="ph">${im(k, alt || cap)}</div>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure>`;
+  const fig = (k, cap, alt) => `<figure class="fig${cap ? ' has-cap' : ''}"><div class="ph">${im(k, alt || cap)}</div>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure>`;
+  // posiziona ogni didascalia esattamente sotto la sua foto, allineata ai bordi
+  function placeCaps(root) {
+    (root || document).querySelectorAll('.fig.has-cap').forEach(f => {
+      const img = f.querySelector('img'), cap = f.querySelector('figcaption');
+      if (!img || !cap || !img.naturalWidth) return;
+      if (getComputedStyle(cap).position !== 'absolute') { cap.classList.add('is-placed'); return; }
+      const fr = f.getBoundingClientRect(), ir = img.getBoundingClientRect();
+      cap.style.left = (ir.left - fr.left) + 'px';
+      cap.style.top = (ir.bottom - fr.top + 8) + 'px';
+      cap.style.width = ir.width + 'px';
+      cap.classList.add('is-placed');
+    });
+  }
+  addEventListener('resize', () => placeCaps(stage));
 
   // ---------- disegno delle schermate ----------
   function render(s) {
     switch (s.kind) {
       case 'cover': return `<div class="slide cover"><h1>${esc(s.title)}</h1><div class="cover-row">${s.cats.map(c => `<button class="cover-card" data-go="${c.go}" type="button">${im(c.img, c.t)}<span>${esc(c.t)}</span></button>`).join('')}</div></div>`;
-      case 'split': return `<div class="slide"><div class="split${s.wide ? ' is-wide' : ''}"><div class="txt${(s.body || '').length > 1400 && !s.wide ? ' cols' : ''}">${s.title ? `<h2 class="h">${esc(s.title)}</h2>` : ''}${s.body}</div>${fig(s.img, s.cap, s.item)}</div></div>`;
+      case 'split': return `<div class="slide"><div class="split${s.wide ? ' is-wide' : ''}"><div class="col-txt"><h2 class="h${s.title ? '' : ' is-spacer'}" ${s.title ? '' : 'aria-hidden="true"'}>${esc(s.title || s.item || '')}</h2><div class="txt${(s.body || '').length > 1400 && !s.wide ? ' cols' : ''}">${s.body}</div></div>${fig(s.img, s.cap, s.item)}</div></div>`;
       case 'quote': return `<div class="slide"><div class="quote"><p>${s.quote}</p>${fig(s.img, s.cap)}</div></div>`;
       case 'full': return `<div class="slide"><div class="full"><div class="txt"><h2 class="h">${esc(s.title)}</h2>${s.body}</div></div></div>`;
       case 'logos': return `<div class="slide"><div class="logos"><div class="txt"><h2 class="h" style="column-span:all">${esc(s.title)}</h2>${s.body}</div>${fig(s.img, '', s.title)}</div></div>`;
