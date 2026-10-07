@@ -12,8 +12,7 @@ window.ERFOTO = {
 "foto/02_urban/01_aurom/01.webp?v=d41eba39",
 "foto/02_urban/01_aurom/02.webp?v=5b7a544e",
 "foto/02_urban/01_aurom/03.webp?v=297652e5",
-"foto/02_urban/01_aurom/04.webp?v=5aaf42af",
-"foto/02_urban/01_aurom/99.webp?v=1c456227"
+"foto/02_urban/01_aurom/04.webp?v=5aaf42af"
 ],
 "t": "miniature/02_urban/01_aurom.webp?v=9c4b55c9"
 },
