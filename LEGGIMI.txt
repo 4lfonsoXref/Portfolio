@@ -1,16 +1,30 @@
-PORTFOLIO EXTERNAL REFERENCE - COME PUBBLICARLO SU GITHUB
-NON caricare lo zip su GitHub: estrailo e carica i file che contiene.
+PORTFOLIO EXTERNAL REFERENCE - COME AGGIORNARE LE FOTO
 
-Ogni file pesa meno di 4 MB, quindi GitHub li accetta tutti dal browser.
-Le foto di Urban & Architecture e Interior sono nei file urban-images-*.js e interior-images-*.js:
-devono stare nella stessa cartella dei file .html (la cartella principale del repository).
+Le foto del sito sono nella cartella "foto", una cartella per progetto:
 
-1. Estrai lo zip (Windows: clic destro > Estrai tutto. Mac: doppio clic).
-2. Su GitHub: repository del sito > Add file > Upload files.
-3. Primo caricamento: tutti i file .html  > Commit changes.
-4. Secondo caricamento: urban-images-1.js ... urban-images-5.js  > Commit changes.
-5. Terzo caricamento: interior-images-1.js ... interior-images-6.js  > Commit changes.
-6. Attendi 1-2 minuti e ricarica il sito (Ctrl+F5 su Windows, Cmd+Shift+R su Mac).
+  foto/00_home        le 4 immagini dei riquadri della home (01 Studio, 02 Urban, 03 Interior, 04 Art)
+  foto/01_studio/...  le immagini delle pagine Studio
+  foto/02_urban/...   Urban & Architecture
+  foto/03_interior/.. Interior
+  foto/04_art/...     Art & Collectible Design
 
-Se un caricamento fallisce, riprova caricando un solo file alla volta.
-La cartella "images", se presente nel repository, non serve più e si può eliminare.
+AGGIUNGERE O SOSTITUIRE UNA FOTO
+1. Su GitHub apri la cartella del progetto (es. foto/03_interior/02_alkimia).
+2. Add file > Upload files, trascina la foto (JPG, PNG o TIFF, anche ad alta risoluzione, max 25 MB).
+3. Chiamala con il numero della posizione: 05.jpg diventa la quinta foto.
+   Se esiste già 05.webp, la nuova foto la sostituisce.
+4. Commit changes.
+In 2-3 minuti GitHub converte la foto (WebP, lato lungo 2400 px, mai ritagliata),
+aggiorna la miniatura e ripubblica il sito. Poi ricarica la pagina con Ctrl+F5 (Mac: Cmd+Shift+R).
+
+TOGLIERE UNA FOTO
+Apri il file .webp nella cartella del progetto, menu ... > Delete file > Commit changes.
+
+ORDINE
+Le foto si vedono in ordine di nome: 01, 02, 03... La 01 è la copertina del progetto.
+
+NOTE
+- Non rinominare le cartelle: il nome dice al sito a quale progetto appartengono le foto.
+- La cartella "miniature" e il file "foto.js" si aggiornano da soli: non toccarli.
+- Un progetto nuovo (cartella nuova) ha bisogno anche di titolo e testi: va aggiunto a index.html.
+- Per seguire l'aggiornamento: scheda "Actions" del repository (pallino verde = fatto).
