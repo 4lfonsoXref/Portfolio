@@ -297,7 +297,10 @@ window.ERFOTO = {
 "foto/03_interior/03_plaza-mahou/02.webp?v=7b704b48",
 "foto/03_interior/03_plaza-mahou/03.webp?v=bf5bc445",
 "foto/03_interior/03_plaza-mahou/04.webp?v=50bae360",
-"foto/03_interior/03_plaza-mahou/05.webp?v=dc7466d5"
+"foto/03_interior/03_plaza-mahou/05.webp?v=dc7466d5",
+"foto/03_interior/03_plaza-mahou/07_XR_MahouPlaza_2.webp?v=f4c0fd3c",
+"foto/03_interior/03_plaza-mahou/09_XR_MahouPlaza_2.webp?v=cf8cf4f4",
+"foto/03_interior/03_plaza-mahou/10_XR_MahouPlaza_2.webp?v=df3db448"
 ],
 "t": "miniature/03_interior/03_plaza-mahou.webp?v=d13a01c7"
 },
