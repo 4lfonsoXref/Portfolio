@@ -45,10 +45,11 @@ Poi UNA RIGA VUOTA, poi il testo. Una riga vuota tra due paragrafi.
 Per il grassetto: **parole in grassetto**.
 
 AGGIUNGERE UN PROGETTO NUOVO
-1. Nella sezione (es. foto/03_interior) crea una cartella nuova: Add file > Upload files
-   e trascina le foto; nel percorso in alto scrivi il nome della cartella, es. 42_nome-progetto/
-   (numero = posizione, poi il nome senza spazi né accenti).
-2. Nella stessa cartella: Add file > Create new file, chiamalo testo.txt e scrivi la scheda come sopra.
+1. Apri la sezione (es. foto/03_interior) > Add file > Create new file.
+   Nel nome del file scrivi: 42_nome-progetto/testo.txt
+   (lo "/" crea la cartella; numero = posizione, poi il nome senza spazi né accenti).
+   Scrivi la scheda come sopra e Commit changes.
+2. Entra nella nuova cartella > Add file > Upload files, trascina le foto (01.jpg, 02.jpg...).
 3. Commit changes. Il progetto compare nell'indice, nella sua categoria, dopo 2-3 minuti.
 Una categoria nuova (es. Category: Wellness) crea da sola un nuovo gruppo.
 Per togliere un progetto: cancella la sua cartella (tutte le foto e testo.txt).
