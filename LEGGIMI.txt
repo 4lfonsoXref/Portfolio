@@ -1,4 +1,4 @@
-PORTFOLIO EXTERNAL REFERENCE - COME AGGIORNARE LE FOTO
+PORTFOLIO EXTERNAL REFERENCE - COME AGGIORNARE FOTO E TESTI
 
 Le foto del sito sono nella cartella "foto", una cartella per progetto:
 
@@ -26,5 +26,32 @@ Le foto si vedono in ordine di nome: 01, 02, 03... La 01 è la copertina del pro
 NOTE
 - Non rinominare le cartelle: il nome dice al sito a quale progetto appartengono le foto.
 - La cartella "miniature" e il file "foto.js" si aggiornano da soli: non toccarli.
-- Un progetto nuovo (cartella nuova) ha bisogno anche di titolo e testi: va aggiunto a index.html.
 - Per seguire l'aggiornamento: scheda "Actions" del repository (pallino verde = fatto).
+
+MODIFICARE I TESTI DI UN PROGETTO
+Ogni cartella progetto contiene testo.txt. Su GitHub aprilo, clicca la matita (Edit), modifica e Commit changes.
+In alto ci sono le righe della scheda, nella forma "Nome: valore":
+
+  Title: Plaza Mahou                 titolo del progetto
+  Place: Madrid, Spain, 2025         riga grigia sotto il titolo
+  Category: Restaurant               sottocategoria (Restaurant, Hotel, Retail...)
+  Tags: Hospitality, Madrid          tag separati da virgola
+  Location: Madrid, Spain            da qui in giù: le righe della scheda,
+  Typology: Restaurant               nell'ordine in cui le scrivi
+  Area: 1000 m²                      (puoi aggiungerne o toglierne: Client, Collaboration...)
+  Status: Built
+
+Poi UNA RIGA VUOTA, poi il testo. Una riga vuota tra due paragrafi.
+Per il grassetto: **parole in grassetto**.
+
+AGGIUNGERE UN PROGETTO NUOVO
+1. Nella sezione (es. foto/03_interior) crea una cartella nuova: Add file > Upload files
+   e trascina le foto; nel percorso in alto scrivi il nome della cartella, es. 42_nome-progetto/
+   (numero = posizione, poi il nome senza spazi né accenti).
+2. Nella stessa cartella: Add file > Create new file, chiamalo testo.txt e scrivi la scheda come sopra.
+3. Commit changes. Il progetto compare nell'indice, nella sua categoria, dopo 2-3 minuti.
+Una categoria nuova (es. Category: Wellness) crea da sola un nuovo gruppo.
+Per togliere un progetto: cancella la sua cartella (tutte le foto e testo.txt).
+
+Le pagine Studio (Our Story, Approach, Awards...) hanno impaginazioni speciali e restano in index.html:
+per modificarle chiedi a Claude.

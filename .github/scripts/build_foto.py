@@ -1,11 +1,12 @@
-"""Prepara le foto del portfolio e scrive foto.js.
+"""Prepara foto e testi del portfolio e scrive foto.js.
 
 1. Ogni foto caricata in foto/ (jpg, png, tif, webp...) viene convertita in WebP,
    lato lungo massimo 2400 px, senza ritagli; l'originale viene sostituito.
 2. Per ogni progetto crea la miniatura in miniature/ dalla prima foto.
-3. Scrive foto.js con l'elenco delle foto di ogni progetto, in ordine di nome.
+3. Legge testo.txt di ogni progetto (titolo, scheda, categoria, tag, testo).
+4. Scrive foto.js con foto e testi di ogni progetto, nell'ordine delle cartelle.
 """
-import hashlib, json, os, re, sys
+import hashlib, html, json, os, re, sys
 from PIL import Image, ImageOps
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -55,7 +56,39 @@ def url(path):
     h = hashlib.md5(open(path, 'rb').read()).hexdigest()[:8]
     return f'{path}?v={h}'
 
-data = {'home': [], 'p': {}, 's': {}}
+
+def read_text(folder, fallback):
+    """testo.txt: righe 'Chiave: valore' in alto, una riga vuota, poi i paragrafi."""
+    path = os.path.join(folder, 'testo.txt')
+    x = {'title': fallback, 'place': '', 'sub': '', 'tags': [], 'meta': [], 'body': ''}
+    if not os.path.exists(path):
+        return x
+    raw = open(path, encoding='utf-8-sig').read().replace('\r\n', '\n').replace('\r', '\n')
+    head, _, body = raw.strip('\n').partition('\n\n')
+    for line in head.split('\n'):
+        k, sep, v = line.partition(':')
+        if not sep:
+            continue
+        k, v = k.strip(), v.strip()
+        kl = k.lower()
+        if kl in ('title', 'titolo', 'título'):
+            x['title'] = v or fallback
+        elif kl in ('place', 'luogo', 'lugar'):
+            x['place'] = v
+        elif kl in ('category', 'categoria', 'categoría'):
+            x['sub'] = v
+        elif kl == 'tags':
+            x['tags'] = [t.strip() for t in v.split(',') if t.strip()]
+        elif v:
+            x['meta'].append([k, v])
+    paras = [re.sub(r'\s*\n\s*', ' ', p).strip() for p in re.split(r'\n\s*\n', body.strip())]
+    def fmt(p):
+        p = html.escape(p, quote=False)
+        return re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', p)
+    x['body'] = ''.join(f'<p>{fmt(p)}</p>' for p in paras if p)
+    return x
+
+data = {'home': [], 'p': {}, 's': {}, 'sec': {}}
 for secdir in sorted(os.listdir(FOTO), key=natkey):
     sec = SEC.get(secdir)
     base = os.path.join(FOTO, secdir)
@@ -73,7 +106,9 @@ for secdir in sorted(os.listdir(FOTO), key=natkey):
         if sec == 'studio':
             data['s'][entity] = lst
             continue
-        entry = {'f': lst}
+        title_guess = re.sub(r'^\d+[_-]', '', pdir).replace('-', ' ').title()
+        entry = {'f': lst, 'x': read_text(folder, title_guess)}
+        data['sec'].setdefault(sec, []).append(entity)
         if lst:  # 2. miniatura
             first = os.path.join(folder, photos(folder)[0])
             tdir = os.path.join(MINI, secdir)
