@@ -18,7 +18,10 @@ window.ERFOTO = {
 "foto/02_urban/01_aurom/D11_EJ_03-1.webp?v=b6d68590",
 "foto/02_urban/01_aurom/D11_EJ_04.webp?v=ca7b2f42",
 "foto/02_urban/01_aurom/D11_Premium_Entertainment_00.webp?v=f788c7e4",
-"foto/02_urban/01_aurom/D11_Premium_Family_00.webp?v=1a655003"
+"foto/02_urban/01_aurom/D11_Premium_Family_00.webp?v=1a655003",
+"foto/02_urban/01_aurom/D11_Premium_Family_01.webp?v=aa6f9e82",
+"foto/02_urban/01_aurom/D11_Premium_Living_00.webp?v=e5d10183",
+"foto/02_urban/01_aurom/D11_Premium_Living_01.webp?v=2f0e0b49"
 ],
 "x": {
 "title": "Aurom Residences, D11",
